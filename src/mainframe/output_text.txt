@@ -1,0 +1,36 @@
+Bienvenue dans la version 1.0 du versificateur !
+Celui-ci est disponible en licence LGPL (en effet, certaines données sont en LGPL).
+
+Auteurs : Christophe Nolim et Gudule.
+Adresser tous compliments à CN et toutes remarques / reports de bugs à Gudule.
+
+Le versificateur est un éditeur de texte perso avec des capacités de vérification de la
+poésie versifiée.
+Pour le moment, le versificateur est capable :
+
+-de faire des manipulations basiques sur ses fichiers (ouverture, traitement)
+
+- de manipuler du texte comportant quelques indications de mise en forme LateX
+Attention : la compatibilité versificateur vers LateX est assurée,
+Mais la compatibilité LateX vers Versificateur n'est pas du tout garantie.
+
+- de compter et de vérifier le nombre de syllabes d'un vers, en tenant
+compte des diérèses possibles
+
+- de vérifier la bonne formation des phrases (majuscules, etc)
+
+- de rechercher des rimes et synonymes (capacités à améliorer)
+
+À faire :
+- permettre de faire un véritable export vers un document LateX de la classe book
+(la fonctionnalité existe mais est très schématique)
+- améliorer la lisibilité du code fourni
+(celui-ci est particulièrement moche, bien que relativement efficace pour les
+différents parsings)
+- améliorer la détection des bonnes ponctuations (pour l'instant il psychote un peu)
+- enregistrer les erreurs dans le fichier tex, derrière des %
+- browser dans les sections (et pas seulement les chapitres)
+- couper les lignes dans le TeX en sortie
+- centraliser le traitement des icônes
+
+-------------------------------------
