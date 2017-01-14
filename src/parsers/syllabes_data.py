@@ -1,6 +1,6 @@
 """
 @file src/parsers/syllabes_data.py
-@version 1.0
+@version 1.1
 @author CN
 @author Gudule
 @date jan 2017
@@ -92,6 +92,14 @@ def is_except_die(word):
 
 #=========================
 # Motifs de synérèses (sauf exceptions)
+# Il y a trois types de motifs :
+# un motif seul ("au") signifie qu'on ne fait jamais de diérèse
+# un motif à deux entrées ("g", "ue") signifie qu'on fait pas la dièrese lorsque
+# le groupe de voyelles est précédé par les consonnes indiquées
+# un motif à trois entrées ("q", "ue", None) signifie qu'on ne fait pas la diérèse
+# lorsque le groupe de voyelles du milieu est précédé par les consonnes indiquées
+# (potentiellement rien de spécial) et suivi par les consonnes indiquées
+# (potentiellement None ce qui signifie une fin de mot)
 #=========================
 
 
@@ -120,13 +128,18 @@ E_MUET = ["e", "gue", "que"]
 
 MUET = ["nt", "s"]
 
-EXCEPTIONS_SYLLMUETTE = ["moment", "que", "ment", "éloquent", "souvent", "vent", "serpent",
+_EXCEPTIONS_SYLLMUETTE = ["moment", "que", "ment", "éloquent", "souvent", "vent", "serpent",
 "cent", "adjacent", "sous-jacent", "subjacent"
 ]
 
-TERM_NON_MUETTES = ["ement", "amment", "emment", "ément", "aiement", "iment"]
+_TERM_NON_MUETTES = ["ement", "amment", "emment", "ément", "aiement", "iment"]
 
 def has_e_muet(word, groups):
+    """
+    Fonction magique qui détermine si un mot se termine par un e muet.
+
+    @warning Il y a toujours des exceptions dont je n'ai pas la liste.
+    """
     if word in ["que"]:
         return False
     if groups[-1] == "e":
@@ -138,12 +151,17 @@ def has_e_muet(word, groups):
     return False
 
 def has_syll_muette(word, groups):
+    """
+    Fonction magique qui détermine si la dernière syllabe du mot est muette.
+
+    @warning Il y a toujours des exceptions dont je n'ai pas la liste.
+    """
     if has_e_muet(word, groups):
         return True
-    for test in TERM_NON_MUETTES:
+    for test in _TERM_NON_MUETTES:
         if word.endswith(test):
             return False
-    if word in EXCEPTIONS_SYLLMUETTE:
+    if word in _EXCEPTIONS_SYLLMUETTE:
         return False
     if len(groups) > 2:
         if groups[-1] in MUET:
@@ -155,18 +173,13 @@ def has_syll_muette(word, groups):
                         return True
     return False
 
-# def _is_except_syll(word):
-#     for test in TERM_NON_MUETTES:
-#         if word.endswith(test):
-#             return True
-#     return word in EXCEPTIONS_SYLLMUETTE
 
 #=========================
-# Liste de h aspirés : le compter dans le smots qui commencent par ces motifs
+# Liste de h aspirés : le compter dans les mots qui commencent par ces motifs
 # TODO non complète
 #==========================
 
-H_ASPIRE = [
+_H_ASPIRE = [
 "hâble", "hache", "hachette", "hachis", "hachisch", "hashich",
 "hachoir", "hachure","hagard",
 "haie", "haillon", "haine", "haïr", "haï", "hais", "haïra", "haire",
@@ -219,17 +232,21 @@ H_ASPIRE = [
 # H aspiré dans ces mots précis
 #========================
 
-H_ASPIRE_2 = [
+_H_ASPIRE_2 = [
 "hume", "huma", "héler", "hèle"
 ]
 
 
 def is_h_aspire(word):
-    for test in H_ASPIRE:
+    """
+    Fonction magique qui détermine si un mot commence par un h aspiré (qu'on prononce).
+    """
+    for test in _H_ASPIRE:
         if word.startswith(test):
             return True
-    return word in H_ASPIRE_2
+    return word in _H_ASPIRE_2
 
 if __name__ == "__main__":
     print(is_h_aspire("homme"))
     print(is_h_aspire("humain"))
+

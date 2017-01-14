@@ -1,0 +1,23 @@
+If doxygen is correctly installed (check parameters in config2.dox), run :
+
+doxygen config2.dox
+
+To create the documentation.
+
+Check if paths to doxygen are correct...
+
+List of tags in the documentation:
+
+@author
+@brief
+@bug
+@code and @endcode
+@date
+@file
+@package
+@param
+@return
+@see
+@todo
+@version
+@warning

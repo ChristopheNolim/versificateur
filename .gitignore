@@ -89,9 +89,12 @@ ENV/
 .ropeproject
 
 doxydoc/
-betterave.jpeg
 anonymizator.py
 Doxyfile.dox
 tests/
 resources/
 src/versificateur.sh
+# src/data/dictionary.db
+# src/data/lexique.txt
+src/magicbutton/data/
+

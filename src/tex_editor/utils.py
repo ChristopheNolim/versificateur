@@ -1,6 +1,6 @@
 """
 @file src/tex_editor/utils.py
-@version 1.0
+@version 1.1
 @author CN
 @author Gudule
 @date jan 2017
@@ -9,6 +9,7 @@ Contains classes useful for the TeX editor.
 
 The goal of this file is to define the SpecialText text zone.
 
+@todo separate this file into 2 / 3
 
 """
 
@@ -20,11 +21,21 @@ from tkinter.simpledialog import askstring
 
 import tkinter.ttk as ttk
 
+from tkinter import SINGLE, Listbox, VERTICAL, BROWSE
+
+def pairwise(iterable):
+    "s -> (s0, s1), (s2, s3), (s4, s5), ..."
+    a = iter(iterable)
+    return zip(a, a)
+
+
 #=============================================
 
 FONT_LINE_NUMBERS = 'helvetica', 9, 'bold'
 FONT_TIP = 'helvetica', 10, 'normal'
-FONT_CHAPTERS = 'helvetica', 10, 'normal'
+
+#==============================================
+
 
 #==============================================
 
@@ -61,14 +72,17 @@ class _TextLineNumbers(Canvas):
                             font=FONT_LINE_NUMBERS)
             i = self.textwidget.index("%s+1line" % i)
 
-from tkinter import SINGLE, Listbox, VERTICAL, BROWSE
-
-def pairwise(iterable):
-    "s -> (s0, s1), (s2, s3), (s4, s5), ..."
-    a = iter(iterable)
-    return zip(a, a)
 
 class TagsScroller(Frame):
+    """
+    @class TagsScroller
+
+    A tkinter wigdet that contains a listbox. It can be attached to a text zone.
+    Then, the listbox keeps a list of all ranges of certain registered tags
+    and allows to browse through them.
+
+    @todo add a tool tip if the tag (e.g chapter name) is too wide
+    """
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -143,14 +157,9 @@ class TagsScroller(Frame):
         i = 0
 
         for a,b in sorted(r):
-        # for r in list(tag_ranges):
-        #     print(r)
-        # i = 0
-        # for a,b in pairwise(list(tag_ranges)):
-            # if i % 2 == 0:
             self._chapters[i] = str(a[0]) + "." + str(a[1])
             toinsert = self.textw.get(str(a[0]) + "." + str(a[1]), str(b[0]) + "." + str(b[1]))
-            self.lbox.insert(END, toinsert if len(toinsert) < 15 else toinsert[:10] + " ...")
+            self.lbox.insert(END, toinsert if len(toinsert) < 25 else toinsert[:20] + " ...")
             i += 1
 
 
@@ -165,11 +174,9 @@ class _SelfDestroyingToolTip:
     def __init__(self, master=None, posx=0, posy=0, text="text"):
 
         self.tip = Toplevel(master)
-        self.tip.withdraw() # Don't show until we have the geometry
-        self.tip.wm_overrideredirect(True) # No window decorations etc.
-        # if TkUtil.mac():
-        #     self.tip.tk.call("::tk::unsupported::MacWindowStyle",
-        #             "style", self.tip._w, "help", "none")
+        self.tip.withdraw()
+        self.tip.wm_overrideredirect(True)
+
         label = ttk.Label(self.tip, text=text, padding=1,
                 background="lightyellow", wraplength=480,
                 relief=GROOVE,
@@ -189,7 +196,6 @@ class _SelfDestroyingToolTip:
         self.tip.after(1000, lambda: self.tip.destroy())
 
 
-
 class SpecialText(Text):
     """
     @class SpecialText
@@ -200,8 +206,13 @@ class SpecialText(Text):
     - find
     - select all
 
-    It fires automatically <<Change>> event when the text is modified in a way
-    such that line numbers should be updated, and catches it.
+    And two displayers for structure tags and error tags.
+
+    It fires automatically <<Change>> events when the text is modified (any
+    key pressed, or tags added or remove). It redraws the line numbers upon
+    scrolling.
+
+    @todo separate this code into two parts (yet another subclass)
     """
 
     def __init__(self, master=None, *args, **kwargs):
@@ -228,8 +239,7 @@ class SpecialText(Text):
         self.errorscroller.attach(self)
         self.errorscroller.grid(column=3, row=1, sticky=E+W+N+S)
 
-        # WARNING : some of this code was copied.
-        # where ? Dunno.
+        # WARNING : some of this code was copied from the Scrolledtext of tkinter itself
         # Copy geometry methods of self.frame without overriding Text
         # methods -- hack!
         text_meths = vars(Text).keys()
@@ -265,13 +275,34 @@ class SpecialText(Text):
         tooltip = _SelfDestroyingToolTip(self, posx=event.x, posy=event.y, text=text)
 
     def register_structure_tag(self, tag):
+        """
+        Registers a tag that concerns the structure of the text (e.g chapter and sections)
+        """
         self.structurescroller.register_tag(tag)
 
     def register_error_tag(self, tag):
+        """
+        Registers an error tag.
+        """
         self.errorscroller.register_tag(tag)
 
     def register_additional_tag(self, tag):
+        """
+        Registers an additional tag.
+        """
         self.additional_tags.add(tag)
+
+    def get_error_tags(self):
+        """
+        Returns the error tags of this text zone, as a list.
+        """
+        return list(self.errorscroller.registered)
+
+    def get_additional_tags(self):
+        """
+        Returns additional tags of this text zone, as a list.
+        """
+        return list(self.additional_tags)
 
     def remove_error_tags(self, begin, end):
         for t in self.errorscroller.registered:
@@ -282,22 +313,32 @@ class SpecialText(Text):
             self.tag_remove(t, begin, end)
 
     def on_change(self, event=None):
+        """
+        On a change : redraws the line numbers and the two structure displayers.
+        """
         self.linenumbers.redraw()
         self.structurescroller.redraw()
         self.errorscroller.redraw()
 
     def tag_add(self, *args, **kwargs):
-        self.event_generate("<<Change>>")
+        """
+        Overrides the tag_add method to fire a <<Change>> event (redraw the structure
+        displayer).
+        """
         super().tag_add(*args, **kwargs)
+        self.event_generate("<<Change>>")
 
     def tag_remove(self, *args, **kwargs):
-        self.event_generate("<<Change>>")
+        """
+        Overrides the tag_remove method to fire a <<Change>> event (redraw the structure
+        displayer).
+        """
         super().tag_remove(*args, **kwargs)
+        self.event_generate("<<Change>>")
 
     def on_scroll(self, *args, **kwargs):
         """
-        Generate a <<Change>> event when the text zone is scrolled. This helps
-        redrawing the line numbers.
+        Redraws the line numbers on scrolling.
         """
         self.linenumbers.redraw()
         # self.event_generate("<<Scroll>>")

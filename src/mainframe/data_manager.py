@@ -1,3 +1,14 @@
+"""
+@file src/mainframe/data_manager.py
+@version 1.1
+@author CN
+@author Gudule
+@date jan 2017
+
+
+@warning : all file operations here were tested only on my personal laptop (Ubuntu)
+"""
+
 from tkinter import END, INSERT
 from tkinter import SEL_FIRST, SEL_LAST
 from tkinter import StringVar
@@ -10,22 +21,28 @@ import os
 import json
 
 
+# TODO no default dir for Windows ?
 DEFAULT_DIR = "~/Documents"
+
 
 PARAMS = "versificateur_params.json"
 
-
 class DataManager:
     """
-    Attach this to a text widget to interface with the data and parameters.
+    @class DataManager
 
-    The text widget must have all the methods of a TexFormattedText.
+    Manages the parameters of the application, and the data that is contained
+    in a text zone.
+    This text widget must have all the methods of a TexFormattedText.
+
+    @todo Should separate parameters & text zone ; that way, could open multiple
+    text zones ?
     """
 
     def __init__(self, textzone=None):
         """
-        Loads parameters and the current file to the textzone
-        that it is attached to.
+        Loads the parameters files. If a current file is specified, loads its
+        contents to the textzone.
         """
         self.cf = StringVar()
         self.cf.set("FICHIER :                     ")
@@ -38,7 +55,7 @@ class DataManager:
 
     def get_stringvar(self):
         """
-        Gets a StringVar of the current behavior of the manager.
+        Gets a StringVar that displays the current file.
         """
         return self.cf
 
@@ -201,6 +218,7 @@ class DataManager:
                 self.text.input_tex_with_comments(s.read())
                 # self.text.input_formatted_text(s.read())
                 self.set_current_file(filename)
+
         except Exception as e:
             print("Could not open file " + filename)
             self.set_current_file(None)
@@ -211,13 +229,12 @@ class DataManager:
         """
         Saves to a file.
         """
-        try:
-            with open(filename, 'w') as stream:
-                # update the current working directory
-                currentdir = os.path.dirname(filename)
-                self.params["lastdir"] = str(currentdir)
-                stream.write(self.text.output_tex_with_comments().rstrip() + "\n")
-                print("Contents have been saved to file %s" % filename)
-        except Exception as e:
-            print(e)
-            print("Couldn't save to file %s" % filename)
+        with open(filename, 'w') as stream:
+            # update the current working directory
+            currentdir = os.path.dirname(filename)
+            self.params["lastdir"] = str(currentdir)
+            stream.write(self.text.output_tex_with_comments().rstrip() + "\n")
+            print("Contents have been saved to file %s" % filename)
+        # except Exception as e:
+        #     print(e)
+        #     print("Couldn't save to file %s" % filename)

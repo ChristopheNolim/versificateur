@@ -1,9 +1,13 @@
 """
 @file src/parsers/text_parser.py
-@version 1.0
+@version 1.1
 @author CN
 @author Gudule
 @date jan 2017
+
+Parse du texte :  découpe en tokens et vérifie que la ponctuation est correcte.
+
+@todo La vérification de ponctuation n'est pas optimale
 
 """
 
@@ -37,22 +41,30 @@ _ACCEPT_PUNC = ["« ", "(",
 
 # message d'erreur : besoin d'une majuscule au mot indiqué
 NEEDS_MAJ = "Needsmaj"
+
+# message d'erreur : mauvaise fin de phrase
 BAD_SENT_END = "Badsentend"
+
+# mauvaise fin de ligne (typiquement espace en fin de ligne)
 BAD_LINE_END = "Badlineend"
+
+# mauvaise ponctuation
 BAD_PUNC = "Badpunc"
 
 #======================================================
 
 
-# juste une ligne !
 def _parse(tokens):
+    """
+    Parse la liste des tokens obtenus à partir d'une ligne de texte. JUSTE une
+    ligne.
+    """
     current_errs = []
     current_sent = []
 
     i = 0
     needsmaj = True
     for t in tokens:
-
         current_sent = current_sent + [t]
         if t["type"] == "W":
             if needsmaj:
@@ -123,7 +135,8 @@ class Sent:
 
 def text_parse(text):
     """
-    Parse EXACTEMENT le texte.
+    Parse le texte. Découpe d'abord en lignes, puis parse chaque ligne
+    et renvoie la liste complète des phrases (objets Sent).
     """
     res = []
     spl = text.split("\n")
@@ -132,14 +145,7 @@ def text_parse(text):
         for errs, toks in _parse(tokenize(par + "\n")):
             res.append(Sent(errs, toks, line_nbr))
         line_nbr += 1
-    # if len(spl) > 1:
-    #     for par in spl[:-1]:
-    #         for errs, toks in _parse(tokenize(par + "\n")):
-    #             res.append(Sent(errs, toks, line_nbr))
-    #         line_nbr += 1
-    #         # res += list(_parse(tokenize(par + "\n")))
-    # for errs, toks in _parse(tokenize(spl[-1])):
-    #     res.append(Sent(errs, toks, line_nbr))
+
     return res
 
 
@@ -150,14 +156,9 @@ Peux-tu me demander le désaveu honteux ?\n
 C’est peu qu’avec son lait une mère amazone \n
 M’a fait sucer encor cet orgueil qui t’étonne;
     """
-    # print(refactor("\\begin{center}toto \\textbf{plage}\n\n toto bloup\\end{center}"))
+
     for s in text_parse("Toi qui connais mon cœur depuis que je respire\n\nDes sentiments d'un cœur si fier, si dédaigneux,\n\n\n\n"):
         # print(s.tokens)
         print(s.line_nbr)
         print(s.err)
 
-    # print(text_parse("- Un (attrape-nigaud,\n Bouh"))
-    # print(SCENE_PARSER.parse("Phase1 situation = Vincentarrive & decritelementdecor & Vincentregarde").l)
-    # print(SCENE_PARSER.parse("> situation perso"))
-    # print(SCENE_PARSER.parse("Phase2 > Phase3").rules)
-    pass

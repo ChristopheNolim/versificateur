@@ -1,10 +1,18 @@
 """
 @file src/parsers/tokenizer.py
-@version 1.0
+@version 1.1
 @author CN
 @author Gudule
 @date jan 2017
 
+
+Outil de découpage du texte en tokens. Chaque token contient :
+- type : le type (ou bien "W" pour un mot, ou "P" pour une ponctuation)
+- token : le token
+- pos : la position du token (début, fin) dans le texte en cours de lecture.
+
+@todo le tokenizer est fait à la main et pas DU TOUT optimal. Peut-être
+recourir à celui de NLTK pour le français ?
 """
 
 # signe non-alphanumérique interne à un mot
@@ -77,6 +85,9 @@ def tokenize(text):
     Découpe un texte français en tokens : mots ou ponctuations.
     Les ponctuations conservent les espaces.
 
+    Les sauts de ligne sont considérés comme des ponctuations. Dans l'idéal, cette
+    fonction ne devrait pas être appellée avec un texte multi-ligne.
+
     >>> list(tokenize("Gudule demanda-t-il.")) == [{'pos': (0, 6), 'type': 'W', 'token': 'Gudule'}, {'pos': (6, 7), 'type': 'P', 'token': ' '}, {'pos': (7, 14), 'type': 'W', 'token': 'demanda'}, {'pos': (14, 15), 'type': 'P', 'token': '-'}, {'pos': (14, 15), 'type': 'W', 'token': 't'}, {'pos': (14, 15), 'type': 'P', 'token': '-'}, {'pos': (15, 19), 'type': 'W', 'token': 'il'}, {'pos': (19, 19), 'type': 'P', 'token': '.'}]
     True
     """
@@ -123,20 +134,33 @@ def tokenize(text):
             tok["pos"] = (posprec , pos )
             yield tok
 
-def get_words(text):
-    """
-    Attention : supprime toutes les apostrophes, par voie de conséquence.
-    """
-    res = list()
-    for tok in tokenize(text):
-        if tok["type"] == "W":
-            res.append(tok)
-        elif tok["token"] == "-t-":
-            tok["token"] = t
-            res.append(tok)
-    return res
+# def get_words(text):
+#     """
+#     Attention : supprime toutes les apostrophes, par voie de conséquence.
+#     """
+#     res = list()
+#     for tok in tokenize(text):
+#         if tok["type"] == "W":
+#             res.append(tok)
+#         elif tok["token"] == "-t-":
+#             tok["token"] = t
+#             res.append(tok)
+#     return res
 
 def get_non_maj_lines(text):
+    """
+    Renvoie une liste de liste de tokens. Chaque liste correspond à
+    une ligne du texte. Les lignes en majuscule et les lignes vides sont omises,
+    mais entrent bien sûr dans le compte de position des tokens.
+
+    Chaque token en sortie contient :
+    - type : W ou P
+    - pos : position
+    - line : ligne
+    - token : le token
+
+    @see verse_parser.py
+    """
     res = list()
     lines = text.split("\n")
     line_count = 0
@@ -160,11 +184,9 @@ def get_non_maj_lines(text):
 
 if __name__ == "__main__":
 
-    # print(list(tokenize("Gudule demanda-t-il.")))
-    print(get_non_maj_lines("Jouons, alors, Akin. Jouons.\n\n   \n  AKIN\nQue veux-tu dire ?"))
-
     import doctest
 
     doctest.testmod()
 
     # print(list(tokenize("Gudule demanda-t-il.")))
+

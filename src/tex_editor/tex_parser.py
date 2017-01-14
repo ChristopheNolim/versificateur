@@ -1,20 +1,22 @@
 
 """
 @file src/tex_editor/tex_parser.py
-@version 1.0
+@version 1.1
 @author CN
 @author Gudule
 @date jan 2017
 
 Parser for a small subset of the Tex / LateX language.
 
-
 The parsing recognizes some TeX commands and returns a list of tuples
 (text, tags applied to the text).
 
+@todo improve the code
+Grammars have been used before, but they were difficult to manage.
 """
 
 
+# mapping from formatting commands to the corresponding tags
 MAPPING_IN = {
 "textbf" : "BOLD",
 "textit" : "ITAL",
@@ -28,23 +30,17 @@ MAPPING_IN = {
 "underline" : "UNDERLINE"
 }
 
+# Mapping from classical TeX commands to the special characters that correspond
 MAPPING_IN_LONE = {
 "oe" : "œ",
 "OE" : "Œ",
 "og" : "«",
 "fg" : "»",
 "dots" : "…",
-"'e" : "é"
-# ("’", "'"),
-# ("«", "\""),
-# ("»", "\""),
-# ("…", "..."),
-# ("[", "("),
-# ("]", ")"),
-# ("œ", "oe")
-# "oe" : "œ"
+# "'e" : "é"
 }
 
+# Mapping from classical special characters to the corresponding TeX commands
 MAPPING_OUT_LONE = {
 # "é" : "'e",
 "œ" : "oe",
@@ -54,6 +50,7 @@ MAPPING_OUT_LONE = {
 "…" : "dots"
 }
 
+# mapping from tags to the corresponding commands
 MAPPING_OUT_NORMAL = {
 "BOLD" : ["textbf"],
 "ITAL" : ["textit"],
@@ -78,27 +75,23 @@ _REPLACE ={
 
 
 def pre_refactor(inpt):
+    """
+    Refactor the input : double line jumps represent in fact one line jump only.
+    Special ~ are used to force lateX to jump a line, they are not needed in the text zone.
+    """
     res = inpt.rstrip().replace("\n\n", "\n")
     for key in _REPLACE:
         res = res.replace(key, _REPLACE[key])
     return res.replace("~\n", "\n")
 
 def post_refactor(outpt):
-    # i = 1
-    # m = "\n"
-    # while m in outpt:
-    #     i += 1
-    #     m += "\n"
-    # res = outpt
-    # m = m[:-1]
-    # while m in res and len(m) > 1:
-    #     res = res.replace(m, "\n" + m[:-1].replace("\n", "~\n"))
-    #     m = m[:-1]
+    """
+    Refactor the output : typically replace a line jump by a real line jump in TeX.
+    """
     res = outpt.rstrip().replace("\n", "~\n")
     for key in _REPLACE:
         res = res.replace(key, _REPLACE[key])
     return res.replace("\n", "\n\n")
-
 
 def _parse(inpt):
     formatted = []
@@ -197,19 +190,9 @@ def _parse(inpt):
     return formatted
 
 
-
-
-
-
-# the toplevel function
-# TODO
-# handle lone commands in a tex-compliant way
-#    >>> print(tex_parse("\\\\oe{}uf ou bien \\\\oe uf"))
-#    [('œ', []), ('uf', []), (' ', []), ('ou', []), (' ', []), ('bien', []), (' ', []), ('œ', []), (' ', []), ('uf', [])]
 def tex_parse(inpt):
     """
     Parses the input.
-    Warning :  to write tests, need to double the backslash symbol (that has to be doubled already)
 
     >>> print(tex_parse("\\\\begin{center} Toto\\\\textbf{plage}Bloup \\\\end{center}"))
     [(' Toto', ['CENTER']), ('plage', ['BOLD', 'CENTER']), ('Bloup ', ['CENTER'])]
@@ -338,9 +321,7 @@ def tags_to_tex(formatted):
         res = res.replace("  ", " ")
 
     return post_refactor(res)
-    # if verbose:
-    #     print(res)
-    # return res
+
 
 
 if __name__ == "__main__":
@@ -371,3 +352,4 @@ if __name__ == "__main__":
             print(test)
             print(tags_to_tex(test))
             print(tex_to_tags(tags_to_tex(test)))
+

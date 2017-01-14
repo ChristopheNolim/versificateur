@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Exec=~/Documents/Projets/versificateur/src/versificateur.sh
+Icon=~/Documents/Projets/versificateur/betterave.jpeg
+Terminal=false

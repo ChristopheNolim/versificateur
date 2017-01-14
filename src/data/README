@@ -1,0 +1,8 @@
+Les données utilisées à la construction de la base de données sont :
+- le thésaurus utilisé par LibreOffice, sous license LGPL (voir licenses/README_thes_fr.dat)
+- la base de données Lexique 3.81 (voir licenses/Licence Lexique)
+- la liste des mots du français de Lexique (fichier lexique.txt)
+
+Une liste de h aspirés a été récupérée sur internet, et les motifs de diérèses / synérères courants 
+ainsi que des listes d'exceptions proviennent de :
+http://darius.hyperion.over-blog.com/2015/07/essai-sur-la-dierese-et-la-synerese.html

@@ -1,13 +1,11 @@
 """
 @file src/tex_editor/text.py
-@version 1.0
+@version 1.1
 @author CN
 @author Gudule
 @date jan 2017
 
 Contains the classes that implement the small TeX editor.
-It uses the package tkinter.
-
 
 """
 
@@ -22,32 +20,39 @@ from tkinter import PhotoImage, Canvas
 import tkinter as tk
 import tkinter.ttk as ttk
 
-import os
-import json
+from resources import TEX_MODEL
 
 try:
     from tex_editor.tex_parser import tex_parse, tags_to_tex
-    from tex_editor.utils import SpecialText
+    from tex_editor.utils import SpecialText, pairwise
+    from tex_editor.tags import Tag
 except Exception as e:
     from tex_parser import tex_parse, tags_to_tex
-    from utils import SpecialText
+    from utils import SpecialText, pairwise
+    from tags import Tag
 
 #===================================
 
+# Font of the normal text
 FONT_NORMAL = 'times', 14, 'normal'
+
+# Font for bold text
 FONT_BOLD = 'times', 14, 'bold'
+
+# font for italic text
 FONT_IT = 'times', 14, 'italic'
 
+# Font for chapters
 FONT_CHAPTER = 'helvetica', 19, 'bold'
+
+# Font for sections
 FONT_SECTION = 'helvetica', 15, 'bold'
 
+# Font for footnotes
 FONT_NOTE = 'helvetica', 10, 'normal'
+
+# Font for small caps
 FONT_SMALL_CAPS = 'times', 12, 'normal'
-# FONT_NOTE_BOLD = 'helvetica', 10, 'bold'
-# FONT_NOTE_IT = 'helvetica', 10, 'italic'
-
-FONT_BUTTONS = 'helvetica', 12, 'bold'
-
 
 # TODO : implement more complex tags, make available the combinations of tags
 
@@ -55,163 +60,20 @@ FONT_BUTTONS = 'helvetica', 12, 'bold'
 TAGS = ["BOLD", "ITAL", "FOOTNOTE", "SECTION", "CHAPTER",
     "SMALLCAPS", "CENTER", "FLUSHRIGHT", "FLUSHLEFT", "UNDERLINE"]
 
-# TAGS_BEHAVIORS = {
-# "ITAL" : { "donotchangeif" : ["CHAPTER", "SECTION", "FOOTNOTE"], "remove" : ["BOLD"], "combine" : [] }
-# ""
-#
-#
-# }
 
 #=========================================
-
-class ButtonPanel(Frame):
-    """
-    @class ButtonPanel
-
-    A panel of buttons that can be attached to a text widget that is a subclass
-    of SpecialText (to have all the methods needed).
-
-    The formatting buttons control which tag is set and which ones automatically
-    removed.
-
-    @see SpecialText
-    """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.grid(row=0,column=0)
-
-        currentdir = os.path.dirname(os.path.abspath(__file__))
-        fpath = os.path.join(currentdir, "icons")
-
-        # self._im1 = PhotoImage(file="icons/format-text-italic.png")
-        # self._im2 = PhotoImage(file="icons/format-text-bold.png")
-        # self._im3 = PhotoImage(file="icons/format-text-underline.png")
-        # self._im4 = PhotoImage(file="icons/format-justify-center.png")
-        # self._im5 = PhotoImage(file="icons/format-justify-left.png")
-        # self._im6 = PhotoImage(file="icons/format-justify-right.png")
-
-
-        self._im1 = PhotoImage(file=os.path.join(currentdir, "icons/format-text-italic.png"))
-        self._im2 = PhotoImage(file=os.path.join(currentdir, "icons/format-text-bold.png"))
-        self._im3 = PhotoImage(file=os.path.join(currentdir, "icons/format-text-underline.png"))
-        self._im4 = PhotoImage(file=os.path.join(currentdir, "icons/format-justify-center.png"))
-        self._im5 = PhotoImage(file=os.path.join(currentdir, "icons/format-justify-left.png"))
-        self._im6 = PhotoImage(file=os.path.join(currentdir, "icons/format-justify-right.png"))
-
-        Button(self,
-               font=FONT_BUTTONS,
-               width=50, height=50,
-               image=self._im1,
-               command=lambda: self._textw._add_remove_tags("ITAL", ["BOLD", "FOOTNOTE", "SMALLCAPS"])
-               ).grid(row=0, column=0, sticky=E+W+N+S)
-        Button(self,
-               font=FONT_BUTTONS,
-               width=50, height=50,
-               image=self._im2,
-               command=lambda: self._textw._add_remove_tags("BOLD", ["ITAL", "FOOTNOTE", "SMALLCAPS"])
-               ).grid(row=1, column=0, sticky=E+W+N+S)
-        Button(self,
-               font=FONT_BUTTONS,
-               width=50, height=50,
-               image=self._im3,
-               command=lambda: self._textw._add_remove_tags("UNDERLINE", [])
-               ).grid(row=2, column=0, sticky=E+W+N+S)
-
-
-        Button(self, font=FONT_BUTTONS,
-               text="œ",
-               command=lambda: self._textw.insert_text("œ")
-               ).grid(row=3, column=0, sticky=E+W+N+S)
-        Button(self, font=FONT_BUTTONS,
-               text="«",
-               command=lambda: self._textw.insert_text("« ")
-               ).grid(row=4, column=0, sticky=E+W+N+S)
-        Button(self, font=FONT_BUTTONS,
-               text="»",
-               command=lambda: self._textw.insert_text("»")
-               ).grid(row=5, column=0, sticky=E+W+N+S)
-        Button(self, font=FONT_BUTTONS,
-               text="…",
-               command=lambda: self._textw.insert_text("…")
-               ).grid(row=6, column=0, sticky=E+W+N+S)
-
-        # TODO warning : flusleft is a bit special in LateX
-        # for now no flushleft here !
-        Button(self,
-               font=FONT_BUTTONS,
-               width=50, height=50,
-               image=self._im5,
-               command=lambda: self._textw._add_mult_line_tag("", ["FLUSHRIGHT", "CENTER"])
-               ).grid(row=0, column=1, sticky=E+W+N+S)
-        Button(self,
-               font=FONT_BUTTONS,
-               width=50, height=50,
-               image=self._im6,
-               command=lambda: self._textw._add_mult_line_tag("FLUSHRIGHT", ["FLUSHLEFT", "CENTER"])
-               ).grid(row=1, column=1, sticky=E+W+N+S)
-        Button(self,
-               font=FONT_BUTTONS,
-               width=50, height=50,
-               image=self._im4,
-               command=lambda: self._textw._add_mult_line_tag("CENTER", ["FLUSHRIGHT", "FLUSHLEFT"])
-               ).grid(row=2, column=1, sticky=E+W+N+S)
-        Button(self,
-               font=FONT_BUTTONS,
-               text="Note",
-               command=lambda: self._textw._add_remove_tags("FOOTNOTE", ["ITAL", "BOLD", "SMALLCAPS"])
-               ).grid(row=3, column=1, sticky=E+W+N+S)
-        Button(self,
-               font=FONT_BUTTONS,
-               text="Déformater",
-               command=lambda: self._textw._add_remove_tags(None, ["BOLD", "ITAL", "UNDERLINE", "CHAPTER", "SECTION", "FOOTNOTE", "SMALLCAPS"])
-               ).grid(row=4, column=1, sticky=E+W+N+S)
-        Button(self,
-               font=FONT_BUTTONS,
-               text="Chapitre",
-               command=lambda: self._textw._add_remove_tags("CHAPTER", ["SECTION", "FOOTNOTE", "BOLD", "ITAL", "SMALLCAPS"])
-               ).grid(row=5, column=1, sticky=E+W+N+S)
-        Button(self,
-               font=FONT_BUTTONS,
-               text="Section",
-               command=lambda: self._textw._add_remove_tags("SECTION", ["CHAPTER", "FOOTNOTE", "BOLD", "ITAL", "SMALLCAPS"])
-               ).grid(row=6, column=1, sticky=E+W+N+S)
-        Button(self, font=FONT_BUTTONS,
-               text="Copier",
-               command=lambda: self._textw.on_copy()
-               ).grid(row=7, column=1, sticky=E+W+N+S)
-        Button(self, font=FONT_BUTTONS,
-               text="Couper",
-               command=lambda: self._textw.on_cut()
-               ).grid(row=8, column=1, sticky=E+W+N+S)
-        Button(self, font=FONT_BUTTONS,
-               text="Coller",
-               command=lambda: self._textw.on_paste()
-               ).grid(row=9, column=1, sticky=E+W+N+S)
-        Button(self, font=FONT_BUTTONS,
-               text="Chercher",
-               command=lambda: self._textw.on_find()
-               ).grid(row=10, column=1, sticky=E+W+N+S)
-        Button(self, font=FONT_BUTTONS,
-               text="Petites maj.",
-               command=lambda: self._textw._add_small_caps_tag(["BOLD", "ITAL", "FOOTNOTE"])
-               ).grid(row=11, column=1, sticky=E+W+N+S)
-
-
-    def attach(self, textwidget):
-        self._textw = textwidget
-
 
 class TexFormattedText(SpecialText):
     """
     @class TexFormattedText
 
-    A subclass of SpecialText that contains a TeX / LateX formatted text.
+    A subclass of SpecialText that contains TeX / LateX formatted text.
 
     """
 
     def __init__(self, master=None, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
+        self["font"] = FONT_NORMAL
         self.tag_configure("BOLD", font=FONT_BOLD)
         self.bind("<Control-b>", lambda x: self._add_remove_tags("BOLD", ["ITAL", "UNDERLINE"]))
         self.tag_configure("ITAL", font=FONT_IT)
@@ -260,6 +122,9 @@ class TexFormattedText(SpecialText):
         """
         Add a tag and remove others on the current selection of the text.
         No multi-line selection is allowed here.
+
+        @todo this does a lot of adding / removing tags, hences fires a lot of
+        <<change>> events (and a lot of redraws). Better way ?
         """
         try:
             selection = self.get(SEL_FIRST, SEL_LAST)
@@ -276,6 +141,10 @@ class TexFormattedText(SpecialText):
             pass
 
     def _add_small_caps_tag(self, tags, event=None):
+        """
+        The small caps tag is a special one, since we need to put the text
+        tagged in small caps.
+        """
         try:
             pos1 = self.index(SEL_FIRST)
             pos2 = self.index(SEL_LAST)
@@ -319,6 +188,11 @@ class TexFormattedText(SpecialText):
             last_position = self.index(INSERT)
 
     def input_tex_with_comments(self, inpt):
+        """
+        Input tex that contains comments. The comments are searched for
+        additional information, such as the cursor position %-CURSOR-%
+        or additional tags %%-TAG-%%.
+        """
         lines = inpt.split("\n")
         comments = [l for l in lines if l.startswith("%")]
         tex = '\n'.join([l for l in lines if not l.startswith("%")])
@@ -330,14 +204,18 @@ class TexFormattedText(SpecialText):
                     # print("Cursor is in position %s" % cursor)
                     self.mark_set(INSERT, cursor)
                     self.see(INSERT)
-                elif l.startswith("%-TAG-%"):
-                    d = json.loads(l[7:])
-                    if d["t"] in self.tag_names():
-                        self.tag_add(d["t"], d["b"], d["e"])
+                elif l.startswith("%%-TAG-%%"):
+                    tmp = Tag.from_str(l)
+                    # tmp.loads(l)
+                    if tmp.name in self.tag_names():
+                        a,b = tmp.to_tkinter_pos()
+                        self.tag_add(tmp.name, a, b)
+
                     else:
-                        print("Warning : unknown tag name %s" % d["t"])
+                        print("Warning : unknown tag name %s" % tmp.name)
         except Exception as e:
             print("Error while processing tags")
+            print(e)
 
     def get_tex_formatted_text(self, verbose=False):
         """
@@ -347,23 +225,19 @@ class TexFormattedText(SpecialText):
         return tags_to_tex(formatted)
 
     def output_tex_with_comments(self, verbose=False):
+        """
+        Output tex, with comments that will describe the cursor position
+        in the text zone, and all error / additional tags.
+        """
         tmp = self.get_tex_formatted_text(self)
         lines = [ "%-CURSOR-% " + str(self.index(INSERT)) ]
-        for t in self.tag_names():
-            if t != "sel" and t not in TAGS:
-                r = self.tag_ranges(t)
-                i = 0
-                while i < len(r):
-                    begin = r[i]
-                    end = r[i+1]
-                    i += 2
-                    d = dict()
-                    d["t"] = t
-                    d["b"] = str(begin)
-                    d["e"] = str(end)
-                    lines.append("%-TAG-% " + json.dumps(d))
-        return "\n".join(lines) + "\n" + tmp
+        for t in self.get_error_tags() + self.get_additional_tags():
+            r = self.tag_ranges(t)
+            for a,b in pairwise(r):
+                tmp2 = Tag.from_tkinter_pos(t, a, b)
+                lines.append(tmp2.dumps())
 
+        return "\n".join(lines) + "\n" + tmp
 
     def export_tex(self):
         """
@@ -372,7 +246,7 @@ class TexFormattedText(SpecialText):
         immediately compilable.
         """
         res = ""
-        with open("tex_editor/model.tex", 'r') as f:
+        with open(TEX_MODEL, 'r') as f:
             for line in f:
                 if line.startswith("% INSERT CONTENT HERE"):
                     res += self.get_tex_formatted_text()

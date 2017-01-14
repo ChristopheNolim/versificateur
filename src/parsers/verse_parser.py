@@ -1,7 +1,7 @@
 
 """
 @file src/parsers/verse_parser.py
-@version 1.0
+@version 1.1
 @author CN
 @author Gudule
 @date jan 2017
@@ -13,10 +13,10 @@ pour en extraire le nombre de syllabes.
 
 try:
     from syllabes_data import *
-    from tokenizer import get_words, get_non_maj_lines
+    from tokenizer import get_non_maj_lines
 except ImportError:
     from parsers.syllabes_data import *
-    from parsers.tokenizer import get_words, get_non_maj_lines
+    from parsers.tokenizer import get_non_maj_lines
 
 #====================
 # Message correspondant à un hiatus
@@ -35,6 +35,8 @@ CESURE = "Cesure"
 #=========================
 
 NBSYLL = "Nbsyll"
+
+#================================
 
 def _cut_groups(word):
     """
@@ -156,14 +158,17 @@ def _analyze(w, verbose=False):
 
 
 def _parse_a_verse(words, nbsyll=None, makecesure=True):
+    """
+    Parse un vers (un seul), à partir de la liste de ses mots.
+
+    @param words Une liste de mots, et uniquement de mots. Pas forcément
+    lowercase.
+    """
     # words = tokens
     # each is still a token
     err = []
     analysis = []
     diepos = []
-    # if not words:
-    #     # pas de vers, mais une nouvelle ligne
-    #     return
 
     current_word = _analyze(words[0]["token"].lower())
     current_word["line"] = words[0]["line"]
@@ -189,10 +194,7 @@ def _parse_a_verse(words, nbsyll=None, makecesure=True):
             newcount = newcount[0], newcount[1] + 1
             for d in next_word["diepos"]:
                 diepos.append(
-                            (next_word["line"], d[0] + next_word["pos"][0], d[1] + next_word["pos"][0])
-                                # ( "%i.%i" % (next_word["line"], d[0] + next_word["pos"][0]),
-                                # "%i.%i" % (next_word["line"], d[1] + next_word["pos"][0]))
-                             )
+                            (next_word["line"], d[0] + next_word["pos"][0], d[1] + next_word["pos"][0]))
         # règle du hiatus plutôt permissive
         # une règle plus stricte serait : not current_word["endsemuet"] (donc il faudrait forcément finir par un e muet)
         if next_word["beginsvoy"] and current_word["endsvoy"] and not current_word["word"].endswith("e"):
@@ -204,8 +206,6 @@ def _parse_a_verse(words, nbsyll=None, makecesure=True):
                 # on détecte un hiatus
                 newerr = dict()
                 newerr["pos"] = (current_word["line"], current_word["pos"][0], next_word["line"], next_word["pos"][1])
-                # ("%i.%i" % (, ),
-                #                  "%i.%i" % (,  + len(next_word["word"])))
                 newerr["message"] = HIATUS
                 err.append(newerr)
         if next_word["beginsvoy"] and current_word["endsemuet"]:
@@ -229,17 +229,15 @@ def _parse_a_verse(words, nbsyll=None, makecesure=True):
                 if cmin <= nbsyll // 2 and nbsyll // 2 <= cmax:
                     cesure = True
             if not cesure:
+                # erreur de césure
                 newerr = dict()
                 newerr["pos"] =  (words[0]["line"], words[0]["pos"][0], words[-1]["line"], words[-1]["pos"][1])
-                # ("%i.%i" % (words[0]["line"], words[0]["pos"][0]),
-                #                   "%i.%i" % (words[-1]["line"], words[-1]["pos"][1]))
                 newerr["message"] = CESURE
                 err.append(newerr)
         if not (counts[-1][0] <= nbsyll and nbsyll <= counts[-1][1]):
+            # erreur sur le nombre de syllabes
             newerr = dict()
             newerr["pos"] =  (words[0]["line"], words[0]["pos"][0], words[-1]["line"], words[-1]["pos"][1])
-            # ("%i.%i" % (words[0]["line"], words[0]["pos"][0]),
-            #                   "%i.%i" % (words[-1]["line"], words[-1]["pos"][1]))
             newerr["message"] = NBSYLL
             err.append(newerr)
 
@@ -247,6 +245,17 @@ def _parse_a_verse(words, nbsyll=None, makecesure=True):
 
 
 def verse_parse(s, nbsyll=None, makecesure=True):
+    """
+    Parse le texte en entrée et vérifie la versification.
+
+    Afin de parser de la tragédie efficacement, les lignes qui ne contiennent
+    que des uppercase (HIPPOLYTE.) sont oubliées. Les lignes vides sont oubliées.
+    Le parser considère que les vers peuvent se poursuivre d'une ligne à l'autre,
+    et recherche la "suite" du vers tant que le nombre de syllabes courant
+    est inférieur à ce qu'il cherche.
+
+    @return Renvoie une liste d'objets Verse.
+    """
     tmp_lines = s.split("\n")
     lines = get_non_maj_lines(s) # the tokens contain line number
     # at "line"
@@ -267,20 +276,8 @@ def verse_parse(s, nbsyll=None, makecesure=True):
     if current_verse:
         res.append(_parse_a_verse(current_verse, nbsyll, makecesure))
     return res
-        #
-        # ltmp = l.rstrip().lstrip()
-        # if ltmp.isupper() or not ltmp:
-        #     current_line += 1
-        #     current_pos_since_last_verse += len(l)
-        # else:
-        #     w = get_words(l)
-        #     if current_verse and
-        #         # est-ce que ce vers vient compléter le précédent ?
-        #         w = get_words(lines[current_verse.line_nbr:])
 
-#
-#     return res
-
+#================================
 
 class Verse:
     """
@@ -299,15 +296,9 @@ class Verse:
         self.analysis = analysis
         self.diepos = diepos
         self.line_nbr = self.analysis[0]["line"]
-        # self.line_nbr = line_nbr
-
-
 
 
 if __name__ == "__main__":
-    # for v in verse_parse("Que, malgré les complots d'une injuste famille,\nSon amante aujourd'hui\n    toto\n    me tienne lieu de fille !", nbsyll=12):
-    #     print(v.counts)
-    #     print(v.err)
 
     print("Analyzing test suite")
     with open("verse_parser_test_suite.txt", "r") as f:
