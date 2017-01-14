@@ -1,0 +1,438 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>Versificateur:  Fichier source de src/parsers/verse_parser.py</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="betterave.jpeg"/></td>
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Versificateur
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Éditeur de texte orienté vers la poésie</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="namespaces.html"><span>Paquetages</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_25205df789895db728d786a757b2675c.html">parsers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">verse_parser.py</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="verse__parser_8py.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespaceverse__parser.html">    1</a></span>&#160;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="stringliteral">@file src/parsers/verse_parser.py</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="stringliteral">@version 1.0</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="stringliteral">@author CN</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="stringliteral">@author Gudule</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="stringliteral">@date jan 2017</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="stringliteral">Ce fichier contient un parser ainsi que les sous-fonctions traitant les mots</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="stringliteral">pour en extraire le nombre de syllabes.</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordflow">try</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">from</span> syllabes_data <span class="keyword">import</span> *</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">from</span> tokenizer <span class="keyword">import</span> get_words, get_non_maj_lines</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordflow">except</span> ImportError:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">from</span> <a class="code" href="namespaceparsers_1_1syllabes__data.html">parsers.syllabes_data</a> <span class="keyword">import</span> *</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">from</span> parsers.tokenizer <span class="keyword">import</span> get_words, get_non_maj_lines</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">#====================</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"># Message correspondant à un hiatus</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">#==================</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespaceverse__parser.html#ad0031ce21a9b7173cf4e6326dc01333e">   25</a></span>&#160;HIATUS = <span class="stringliteral">&quot;Hiatus&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">#====================</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"># Message correspondant à une mauvaise césure</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">#==================</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="namespaceverse__parser.html#a06797ef2f1afa3cf15dd9ffcca23562e">   31</a></span>&#160;CESURE = <span class="stringliteral">&quot;Cesure&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">#=======================</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"># Mauvais compte de syllabes</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">#=========================</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="namespaceverse__parser.html#adacd70f9f57e19f6f317ef8ce8146edc">   37</a></span>&#160;NBSYLL = <span class="stringliteral">&quot;Nbsyll&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">def </span>_cut_groups(word):</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="stringliteral">    Coupe un mot en groupes de lettres qui sont soit des voyelles,</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="stringliteral">    soit des consonnes.</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="stringliteral">    Grosso modo, une syllabe par groupe de voyelles.</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    l = list()</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    current = <span class="stringliteral">&quot;&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">if</span> word == <span class="stringliteral">&quot;&quot;</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">return</span> []</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    isvow = word[0] <span class="keywordflow">in</span> VOYELLES</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">for</span> c <span class="keywordflow">in</span> word:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">if</span> isvow == (c <span class="keywordflow">in</span> VOYELLES):</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            current += c</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            isvow = <span class="keywordflow">not</span> isvow</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            l.append(current)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            current = c</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    l.append(current)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">return</span> l</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">def </span>_analyze(w, verbose=False):</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="stringliteral">    Analyse un mot et renvoie un dictionnaire avec les clés suivantes :</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="stringliteral">    word : le mot (état initial)</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="stringliteral">    syllmuette : le mot se termine-t-il par une syllabe muette ?</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="stringliteral">    endsvoy : se termine-t-il par une voyelle ?</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="stringliteral">    beginsvoy : le mot commence-t-il par une voyelle ?</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="stringliteral">    endse : se termine-t-il par e ou ue ?</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="stringliteral">    endslettere : se termine-t-il par e ? (pas forcément muet)</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="stringliteral">    hasdie : le mot a-t-il une diérèse ?</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="stringliteral">    diepos : les positions des diérèses possibles dans le mot</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="stringliteral">    Attention : le h non prononcé est automatiquement supprimé. Cela pourrait-il</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="stringliteral">    causer des erreurs ?</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    word = w</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment"># supprimer le h qu&#39;on ne prononce pas</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> w.startswith(<span class="stringliteral">&quot;h&quot;</span>) <span class="keywordflow">and</span> <span class="keywordflow">not</span> <a class="code" href="namespacesyllabes__data.html#a311cf0af85bb4aa21de9fcc81aa0bc52">is_h_aspire</a>(word):</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        word = w[1:]</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment"># couper le mot en groupes de lettres</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    l = _cut_groups(word)</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    res = dict()</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    res[<span class="stringliteral">&quot;word&quot;</span>] = w</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment"># res[&quot;pron&quot;] = word</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment"># la dernière syllabe peut-elle se muettiser</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    res[<span class="stringliteral">&quot;syllmuette&quot;</span>] = <a class="code" href="namespacesyllabes__data.html#a5780174cb8319a3f78159f7fc23ea744">has_syll_muette</a>(word, l)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment"># le mot se finit-il par un e</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    res[<span class="stringliteral">&quot;endsemuet&quot;</span>] = <a class="code" href="namespacesyllabes__data.html#a3b2c7e2a5fad36cb70b9826841f35167">has_e_muet</a>(word, l)</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment"># le mot commence par une voyelle ?</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    res[<span class="stringliteral">&quot;beginsvoy&quot;</span>] = <span class="keyword">False</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">if</span> l[0][0] <span class="keywordflow">in</span> VOYELLES:</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        res[<span class="stringliteral">&quot;beginsvoy&quot;</span>] = <span class="keyword">True</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment"># le mot se finit par une voyelle ?</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    res[<span class="stringliteral">&quot;endsvoy&quot;</span>] = <span class="keyword">False</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">if</span> l[-1][-1] <span class="keywordflow">in</span> VOYELLES:</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        res[<span class="stringliteral">&quot;endsvoy&quot;</span>] = <span class="keyword">True</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    hasdie = <span class="keyword">False</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    diepos = []</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    count = 0</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment"># on compte maintenant les syllabes</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(len(l)):</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        gr = l[i]</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="comment"># c&#39;est un groupe de voyelles</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">if</span> gr[0] <span class="keywordflow">in</span> VOYELLES:</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="keywordflow">if</span> len(gr) &gt; 1:</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                <span class="keywordflow">if</span> verbose:</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                    print(gr)</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                syn = <span class="keyword">False</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="comment"># peut-être une diérèse</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                <span class="keywordflow">for</span> pat <span class="keywordflow">in</span> SYNERESES:</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                    <span class="keywordflow">if</span> type(pat) == list:</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                        <span class="keywordflow">if</span> len(pat) == 2:</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                            <span class="keywordflow">if</span> i &gt; 0:</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                                <span class="keywordflow">if</span> pat[1] == gr <span class="keywordflow">and</span> pat[0] <span class="keywordflow">in</span> l[i-1]:</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                                    <span class="keywordflow">if</span> verbose:</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                                        print(<span class="stringliteral">&quot;Synerese&quot;</span>)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                                    syn = <span class="keyword">True</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                        <span class="keywordflow">elif</span> len(pat) == 3:</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                            <span class="keywordflow">if</span> pat[2] <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                                <span class="keywordflow">if</span> i == len(l) - 1:</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                                    <span class="keywordflow">if</span> pat[1] == gr <span class="keywordflow">and</span> l[i-1].endswith(pat[0]):</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                                        <span class="keywordflow">if</span> verbose:</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                                            print(<span class="stringliteral">&quot;Synerese&quot;</span>)</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                                        syn = <span class="keyword">True</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                            <span class="keywordflow">elif</span> i &lt; len(l) - 1:</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                                <span class="keywordflow">if</span> (pat[1] == gr</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                                    <span class="keywordflow">and</span> l[i-1].endswith(pat[0])</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                                    <span class="keywordflow">and</span> l[i+1].startswith(pat[2]) ):</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                                    <span class="keywordflow">if</span> verbose:</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                                        print(<span class="stringliteral">&quot;Synerese&quot;</span>)</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                                    syn = <span class="keyword">True</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                        <span class="keywordflow">if</span> pat == gr:</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                            <span class="keywordflow">if</span> verbose:</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                                print(<span class="stringliteral">&quot;Synerese&quot;</span>)</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                            <span class="comment"># print(pat)</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                            syn = <span class="keyword">True</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                <span class="keywordflow">if</span> <a class="code" href="namespacesyllabes__data.html#a8d47f8bfaff3d43a57c6cc05c8d69175">is_except_syn</a>(word):</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                    <span class="comment"># c&#39;est une exception de synérèse</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                    <span class="keywordflow">if</span> verbose:</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                        print(<span class="stringliteral">&quot;Synerese (exception connue)&quot;</span>)</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                    syn = <span class="keyword">True</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <span class="keywordflow">if</span> <span class="keywordflow">not</span> syn:</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                    <span class="comment"># on a trouvé une diérèse à cette position</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                    diepos.append((len(<span class="stringliteral">&#39;&#39;</span>.join(l[:i])), len(<span class="stringliteral">&#39;&#39;</span>.join(l[:i+1]))))</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                    hasdie = <span class="keyword">True</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            count = count + 1</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    res[<span class="stringliteral">&quot;diepos&quot;</span>] = diepos</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    res[<span class="stringliteral">&quot;hasdie&quot;</span>] = hasdie</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    res[<span class="stringliteral">&quot;count&quot;</span>] = count</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordflow">return</span> res</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="keyword">def </span>_parse_a_verse(words, nbsyll=None, makecesure=True):</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="comment"># words = tokens</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="comment"># each is still a token</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    err = []</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    analysis = []</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    diepos = []</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="comment"># if not words:</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="comment">#     # pas de vers, mais une nouvelle ligne</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="comment">#     return</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    current_word = _analyze(words[0][<span class="stringliteral">&quot;token&quot;</span>].lower())</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    current_word[<span class="stringliteral">&quot;line&quot;</span>] = words[0][<span class="stringliteral">&quot;line&quot;</span>]</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    current_word[<span class="stringliteral">&quot;pos&quot;</span>] = words[0][<span class="stringliteral">&quot;pos&quot;</span>]</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    analysis.append(current_word)</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    newcount = current_word[<span class="stringliteral">&quot;count&quot;</span>], current_word[<span class="stringliteral">&quot;count&quot;</span>]</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordflow">if</span> current_word[<span class="stringliteral">&quot;hasdie&quot;</span>]:</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        newcount = newcount[0], newcount[1] + 1</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    counts = [newcount]</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="keywordflow">for</span> w <span class="keywordflow">in</span> words[1:]:</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="comment"># print(w)</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        next_word = _analyze(w[<span class="stringliteral">&quot;token&quot;</span>].lower())</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        next_word[<span class="stringliteral">&quot;pos&quot;</span>] = w[<span class="stringliteral">&quot;pos&quot;</span>]</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        next_word[<span class="stringliteral">&quot;line&quot;</span>] = w[<span class="stringliteral">&quot;line&quot;</span>]</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        newcount = counts[-1]</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="comment"># compter le nouveau mot</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        newcount = newcount[0] + next_word[<span class="stringliteral">&quot;count&quot;</span>], newcount[1] + next_word[<span class="stringliteral">&quot;count&quot;</span>]</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="keywordflow">if</span> next_word[<span class="stringliteral">&quot;hasdie&quot;</span>]:</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            <span class="comment"># ajouter une possibilité de diérèse</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            newcount = newcount[0], newcount[1] + 1</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            <span class="keywordflow">for</span> d <span class="keywordflow">in</span> next_word[<span class="stringliteral">&quot;diepos&quot;</span>]:</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                diepos.append(</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                            (next_word[<span class="stringliteral">&quot;line&quot;</span>], d[0] + next_word[<span class="stringliteral">&quot;pos&quot;</span>][0], d[1] + next_word[<span class="stringliteral">&quot;pos&quot;</span>][0])</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                                <span class="comment"># ( &quot;%i.%i&quot; % (next_word[&quot;line&quot;], d[0] + next_word[&quot;pos&quot;][0]),</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                                <span class="comment"># &quot;%i.%i&quot; % (next_word[&quot;line&quot;], d[1] + next_word[&quot;pos&quot;][0]))</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                             )</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <span class="comment"># règle du hiatus plutôt permissive</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="comment"># une règle plus stricte serait : not current_word[&quot;endsemuet&quot;] (donc il faudrait forcément finir par un e muet)</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <span class="keywordflow">if</span> next_word[<span class="stringliteral">&quot;beginsvoy&quot;</span>] <span class="keywordflow">and</span> current_word[<span class="stringliteral">&quot;endsvoy&quot;</span>] <span class="keywordflow">and</span> <span class="keywordflow">not</span> current_word[<span class="stringliteral">&quot;word&quot;</span>].endswith(<span class="stringliteral">&quot;e&quot;</span>):</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            <span class="comment"># ici c&#39;est quand même une élision</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            <span class="comment"># (oui, on a tué l&#39;apostrophe...)</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            <span class="keywordflow">if</span> current_word[<span class="stringliteral">&quot;word&quot;</span>].endswith(<span class="stringliteral">&quot;qu&quot;</span>):</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                newcount = newcount[0] - 1, newcount[1] - 1</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                <span class="comment"># on détecte un hiatus</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                newerr = dict()</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                newerr[<span class="stringliteral">&quot;pos&quot;</span>] = (current_word[<span class="stringliteral">&quot;line&quot;</span>], current_word[<span class="stringliteral">&quot;pos&quot;</span>][0], next_word[<span class="stringliteral">&quot;line&quot;</span>], next_word[<span class="stringliteral">&quot;pos&quot;</span>][1])</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                <span class="comment"># (&quot;%i.%i&quot; % (, ),</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                <span class="comment">#                  &quot;%i.%i&quot; % (,  + len(next_word[&quot;word&quot;])))</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                newerr[<span class="stringliteral">&quot;message&quot;</span>] = HIATUS</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                err.append(newerr)</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        <span class="keywordflow">if</span> next_word[<span class="stringliteral">&quot;beginsvoy&quot;</span>] <span class="keywordflow">and</span> current_word[<span class="stringliteral">&quot;endsemuet&quot;</span>]:</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="comment"># retirer une syllabe par élision du e muet</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <span class="comment"># la retirer aussi sur le vers précédent (!!!) sinon problèmes de césure</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            counts[-1] = counts[-1][0] - 1, counts[-1][1] - 1</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            newcount = newcount[0] - 1, newcount[1] - 1</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        analysis.append(next_word)</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        counts.append(newcount)</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        current_word = next_word</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="comment"># la dernière syllabe est muette</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordflow">if</span> current_word[<span class="stringliteral">&quot;syllmuette&quot;</span>]:</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        counts[-1] = counts[-1][0] - 1, counts[-1][1] - 1</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keywordflow">if</span> nbsyll <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <span class="keywordflow">if</span> makecesure <span class="keywordflow">and</span> nbsyll % 2 == 0:</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            cesure = <span class="keyword">False</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            <span class="keywordflow">for</span> cmin, cmax <span class="keywordflow">in</span> counts:</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                <span class="keywordflow">if</span> cmin &lt;= nbsyll // 2 <span class="keywordflow">and</span> nbsyll // 2 &lt;= cmax:</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                    cesure = <span class="keyword">True</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> cesure:</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                newerr = dict()</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                newerr[<span class="stringliteral">&quot;pos&quot;</span>] =  (words[0][<span class="stringliteral">&quot;line&quot;</span>], words[0][<span class="stringliteral">&quot;pos&quot;</span>][0], words[-1][<span class="stringliteral">&quot;line&quot;</span>], words[-1][<span class="stringliteral">&quot;pos&quot;</span>][1])</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                <span class="comment"># (&quot;%i.%i&quot; % (words[0][&quot;line&quot;], words[0][&quot;pos&quot;][0]),</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                <span class="comment">#                   &quot;%i.%i&quot; % (words[-1][&quot;line&quot;], words[-1][&quot;pos&quot;][1]))</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                newerr[<span class="stringliteral">&quot;message&quot;</span>] = CESURE</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                err.append(newerr)</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <span class="keywordflow">if</span> <span class="keywordflow">not</span> (counts[-1][0] &lt;= nbsyll <span class="keywordflow">and</span> nbsyll &lt;= counts[-1][1]):</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            newerr = dict()</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            newerr[<span class="stringliteral">&quot;pos&quot;</span>] =  (words[0][<span class="stringliteral">&quot;line&quot;</span>], words[0][<span class="stringliteral">&quot;pos&quot;</span>][0], words[-1][<span class="stringliteral">&quot;line&quot;</span>], words[-1][<span class="stringliteral">&quot;pos&quot;</span>][1])</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            <span class="comment"># (&quot;%i.%i&quot; % (words[0][&quot;line&quot;], words[0][&quot;pos&quot;][0]),</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="comment">#                   &quot;%i.%i&quot; % (words[-1][&quot;line&quot;], words[-1][&quot;pos&quot;][1]))</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            newerr[<span class="stringliteral">&quot;message&quot;</span>] = NBSYLL</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            err.append(newerr)</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classverse__parser_1_1_verse.html">Verse</a>(err, counts, analysis, diepos)</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
+<div class="line"><a name="l00249"></a><span class="lineno"><a class="line" href="namespaceverse__parser.html#aeb9f06acdd9aa71f689c9b0412545e09">  249</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceverse__parser.html#aeb9f06acdd9aa71f689c9b0412545e09">verse_parse</a>(s, nbsyll=None, makecesure=True):</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    tmp_lines = s.split(<span class="stringliteral">&quot;\n&quot;</span>)</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    lines = <a class="code" href="namespacetokenizer.html#a336237c2ca352ce8d955661a22099326">get_non_maj_lines</a>(s) <span class="comment"># the tokens contain line number</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="comment"># at &quot;line&quot;</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    res = []</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="keywordflow">if</span> <span class="keywordflow">not</span> lines:</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <span class="keywordflow">return</span> []</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    current_verse = lines[0]</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="keywordflow">for</span> l <span class="keywordflow">in</span> lines[1:]:</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <span class="keywordflow">if</span> nbsyll <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            res.append(_parse_a_verse(l, nbsyll, makecesure))</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        <span class="keywordflow">elif</span> _parse_a_verse(current_verse, nbsyll, makecesure).counts[-1][1] &gt;= nbsyll:</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            <span class="comment"># aller plus loin pour voir si le vers ne se complète pas</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            res.append(_parse_a_verse(current_verse, nbsyll, makecesure))</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            current_verse = l</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            current_verse += l</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="keywordflow">if</span> current_verse:</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        res.append(_parse_a_verse(current_verse, nbsyll, makecesure))</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keywordflow">return</span> res</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        <span class="comment">#</span></div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        <span class="comment"># ltmp = l.rstrip().lstrip()</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="comment"># if ltmp.isupper() or not ltmp:</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <span class="comment">#     current_line += 1</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="comment">#     current_pos_since_last_verse += len(l)</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        <span class="comment"># else:</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        <span class="comment">#     w = get_words(l)</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        <span class="comment">#     if current_verse and</span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <span class="comment">#         # est-ce que ce vers vient compléter le précédent ?</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="comment">#         w = get_words(lines[current_verse.line_nbr:])</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="comment">#</span></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="comment">#     return res</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00285"></a><span class="lineno"><a class="line" href="classverse__parser_1_1_verse.html">  285</a></span>&#160;<span class="keyword">class </span><a class="code" href="classverse__parser_1_1_verse.html">Verse</a>:</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="stringliteral">    @class Verse</span></div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="stringliteral">    Container pour un vers parsé.</span></div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="stringliteral">    Contient les messages d&#39;erreur et les positions des diérèses. Toutes sont</span></div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="stringliteral">    relatives au numéro de ligne du vers, lui-même relatif à la position</span></div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="stringliteral">    dans le texte initial des vers qui sont parsés.</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
+<div class="line"><a name="l00296"></a><span class="lineno"><a class="line" href="classverse__parser_1_1_verse.html#a397da952ec7b628b324ce160c4a1ce87">  296</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classverse__parser_1_1_verse.html#a397da952ec7b628b324ce160c4a1ce87">__init__</a>(self, err, counts, analysis, diepos):</div>
+<div class="line"><a name="l00297"></a><span class="lineno"><a class="line" href="classverse__parser_1_1_verse.html#a8da23437b64c64b33f4d9415678a1934">  297</a></span>&#160;        self.<a class="code" href="classverse__parser_1_1_verse.html#a8da23437b64c64b33f4d9415678a1934">err</a> = err</div>
+<div class="line"><a name="l00298"></a><span class="lineno"><a class="line" href="classverse__parser_1_1_verse.html#a8553bca345c6d0e5ffb9da1367f7fcfc">  298</a></span>&#160;        self.<a class="code" href="classverse__parser_1_1_verse.html#a8553bca345c6d0e5ffb9da1367f7fcfc">counts</a> = counts</div>
+<div class="line"><a name="l00299"></a><span class="lineno"><a class="line" href="classverse__parser_1_1_verse.html#a4f8f3107911abe117e0105860cf1f667">  299</a></span>&#160;        self.<a class="code" href="classverse__parser_1_1_verse.html#a4f8f3107911abe117e0105860cf1f667">analysis</a> = analysis</div>
+<div class="line"><a name="l00300"></a><span class="lineno"><a class="line" href="classverse__parser_1_1_verse.html#a5227bfe71e85077a51471157a8693c37">  300</a></span>&#160;        self.<a class="code" href="classverse__parser_1_1_verse.html#a5227bfe71e85077a51471157a8693c37">diepos</a> = diepos</div>
+<div class="line"><a name="l00301"></a><span class="lineno"><a class="line" href="classverse__parser_1_1_verse.html#affbfce8897c2deb023524050b3fe5a83">  301</a></span>&#160;        self.<a class="code" href="classverse__parser_1_1_verse.html#affbfce8897c2deb023524050b3fe5a83">line_nbr</a> = self.<a class="code" href="classverse__parser_1_1_verse.html#a4f8f3107911abe117e0105860cf1f667">analysis</a>[0][<span class="stringliteral">&quot;line&quot;</span>]</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <span class="comment"># self.line_nbr = line_nbr</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <span class="comment"># for v in verse_parse(&quot;Que, malgré les complots d&#39;une injuste famille,\nSon amante aujourd&#39;hui\n    toto\n    me tienne lieu de fille !&quot;, nbsyll=12):</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <span class="comment">#     print(v.counts)</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <span class="comment">#     print(v.err)</span></div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    print(<span class="stringliteral">&quot;Analyzing test suite&quot;</span>)</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    with open(<span class="stringliteral">&quot;verse_parser_test_suite.txt&quot;</span>, <span class="stringliteral">&quot;</span><span class="stringliteral">r&quot;) as f:</span></div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="stringliteral">        </span><span class="keywordflow">for</span> v <span class="keywordflow">in</span> <a class="code" href="namespaceverse__parser.html#aeb9f06acdd9aa71f689c9b0412545e09">verse_parse</a>(f.read(), nbsyll=12):</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            <span class="keywordflow">if</span> v.err:</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                print(<span class="stringliteral">&quot;=====================&quot;</span>)</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                print(<span class="stringliteral">&quot;ERROR !!&quot;</span>)</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                print(v.line_nbr)</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                print(v.err)</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                print(v.analysis)</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="keywordflow">pass</span></div>
+<div class="ttc" id="namespacesyllabes__data_html_a3b2c7e2a5fad36cb70b9826841f35167"><div class="ttname"><a href="namespacesyllabes__data.html#a3b2c7e2a5fad36cb70b9826841f35167">syllabes_data.has_e_muet</a></div><div class="ttdeci">def has_e_muet(word, groups)</div><div class="ttdef"><b>Definition:</b> <a href="syllabes__data_8py_source.html#l00129">syllabes_data.py:129</a></div></div>
+<div class="ttc" id="namespaceverse__parser_html_aeb9f06acdd9aa71f689c9b0412545e09"><div class="ttname"><a href="namespaceverse__parser.html#aeb9f06acdd9aa71f689c9b0412545e09">verse_parser.verse_parse</a></div><div class="ttdeci">def verse_parse</div><div class="ttdef"><b>Definition:</b> <a href="verse__parser_8py_source.html#l00249">verse_parser.py:249</a></div></div>
+<div class="ttc" id="namespacetokenizer_html_a336237c2ca352ce8d955661a22099326"><div class="ttname"><a href="namespacetokenizer.html#a336237c2ca352ce8d955661a22099326">tokenizer.get_non_maj_lines</a></div><div class="ttdeci">def get_non_maj_lines(text)</div><div class="ttdef"><b>Definition:</b> <a href="tokenizer_8py_source.html#l00139">tokenizer.py:139</a></div></div>
+<div class="ttc" id="namespacesyllabes__data_html_a311cf0af85bb4aa21de9fcc81aa0bc52"><div class="ttname"><a href="namespacesyllabes__data.html#a311cf0af85bb4aa21de9fcc81aa0bc52">syllabes_data.is_h_aspire</a></div><div class="ttdeci">def is_h_aspire(word)</div><div class="ttdef"><b>Definition:</b> <a href="syllabes__data_8py_source.html#l00227">syllabes_data.py:227</a></div></div>
+<div class="ttc" id="classverse__parser_1_1_verse_html_a8da23437b64c64b33f4d9415678a1934"><div class="ttname"><a href="classverse__parser_1_1_verse.html#a8da23437b64c64b33f4d9415678a1934">verse_parser.Verse.err</a></div><div class="ttdeci">err</div><div class="ttdef"><b>Definition:</b> <a href="verse__parser_8py_source.html#l00297">verse_parser.py:297</a></div></div>
+<div class="ttc" id="namespacesyllabes__data_html_a8d47f8bfaff3d43a57c6cc05c8d69175"><div class="ttname"><a href="namespacesyllabes__data.html#a8d47f8bfaff3d43a57c6cc05c8d69175">syllabes_data.is_except_syn</a></div><div class="ttdeci">def is_except_syn(word)</div><div class="ttdef"><b>Definition:</b> <a href="syllabes__data_8py_source.html#l00070">syllabes_data.py:70</a></div></div>
+<div class="ttc" id="classverse__parser_1_1_verse_html"><div class="ttname"><a href="classverse__parser_1_1_verse.html">verse_parser.Verse</a></div><div class="ttdef"><b>Definition:</b> <a href="verse__parser_8py_source.html#l00285">verse_parser.py:285</a></div></div>
+<div class="ttc" id="classverse__parser_1_1_verse_html_a8553bca345c6d0e5ffb9da1367f7fcfc"><div class="ttname"><a href="classverse__parser_1_1_verse.html#a8553bca345c6d0e5ffb9da1367f7fcfc">verse_parser.Verse.counts</a></div><div class="ttdeci">counts</div><div class="ttdef"><b>Definition:</b> <a href="verse__parser_8py_source.html#l00298">verse_parser.py:298</a></div></div>
+<div class="ttc" id="namespaceparsers_1_1syllabes__data_html"><div class="ttname"><a href="namespaceparsers_1_1syllabes__data.html">syllabes_data</a></div></div>
+<div class="ttc" id="classverse__parser_1_1_verse_html_a4f8f3107911abe117e0105860cf1f667"><div class="ttname"><a href="classverse__parser_1_1_verse.html#a4f8f3107911abe117e0105860cf1f667">verse_parser.Verse.analysis</a></div><div class="ttdeci">analysis</div><div class="ttdef"><b>Definition:</b> <a href="verse__parser_8py_source.html#l00299">verse_parser.py:299</a></div></div>
+<div class="ttc" id="classverse__parser_1_1_verse_html_a5227bfe71e85077a51471157a8693c37"><div class="ttname"><a href="classverse__parser_1_1_verse.html#a5227bfe71e85077a51471157a8693c37">verse_parser.Verse.diepos</a></div><div class="ttdeci">diepos</div><div class="ttdef"><b>Definition:</b> <a href="verse__parser_8py_source.html#l00300">verse_parser.py:300</a></div></div>
+<div class="ttc" id="classverse__parser_1_1_verse_html_affbfce8897c2deb023524050b3fe5a83"><div class="ttname"><a href="classverse__parser_1_1_verse.html#affbfce8897c2deb023524050b3fe5a83">verse_parser.Verse.line_nbr</a></div><div class="ttdeci">line_nbr</div><div class="ttdef"><b>Definition:</b> <a href="verse__parser_8py_source.html#l00301">verse_parser.py:301</a></div></div>
+<div class="ttc" id="namespacesyllabes__data_html_a5780174cb8319a3f78159f7fc23ea744"><div class="ttname"><a href="namespacesyllabes__data.html#a5780174cb8319a3f78159f7fc23ea744">syllabes_data.has_syll_muette</a></div><div class="ttdeci">def has_syll_muette(word, groups)</div><div class="ttdef"><b>Definition:</b> <a href="syllabes__data_8py_source.html#l00140">syllabes_data.py:140</a></div></div>
+<div class="ttc" id="classverse__parser_1_1_verse_html_a397da952ec7b628b324ce160c4a1ce87"><div class="ttname"><a href="classverse__parser_1_1_verse.html#a397da952ec7b628b324ce160c4a1ce87">verse_parser.Verse.__init__</a></div><div class="ttdeci">def __init__(self, err, counts, analysis, diepos)</div><div class="ttdef"><b>Definition:</b> <a href="verse__parser_8py_source.html#l00296">verse_parser.py:296</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

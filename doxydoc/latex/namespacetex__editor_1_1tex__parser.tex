@@ -1,0 +1,281 @@
+\hypertarget{namespacetex__editor_1_1tex__parser}{}\section{Référence de l\textquotesingle{}espace de nommage tex\+\_\+editor.\+tex\+\_\+parser}
+\label{namespacetex__editor_1_1tex__parser}\index{tex\+\_\+editor.\+tex\+\_\+parser@{tex\+\_\+editor.\+tex\+\_\+parser}}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacetex__editor_1_1tex__parser_a58a42ed389b44183c51b29678927dcf4}{pre\+\_\+refactor} (inpt)
+\item 
+def \hyperlink{namespacetex__editor_1_1tex__parser_a3c9dc90a3f669ba9901cad0e1eb9fb14}{post\+\_\+refactor} (outpt)
+\item 
+def \hyperlink{namespacetex__editor_1_1tex__parser_aa45bb45171acbdcb0fc4f11f233324de}{tex\+\_\+parse} (inpt)
+\item 
+def \hyperlink{namespacetex__editor_1_1tex__parser_a4e9cfd4519c62659ac9a45aef9f7c9f2}{tex\+\_\+to\+\_\+tags} (inpt)
+\item 
+def \hyperlink{namespacetex__editor_1_1tex__parser_ad93c436c717eb1690305e71ffda5a814}{tags\+\_\+to\+\_\+tex} (formatted)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+dictionary \hyperlink{namespacetex__editor_1_1tex__parser_a0b8e21ec116f7e53f3d4858c996694e8}{M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N}
+\item 
+dictionary \hyperlink{namespacetex__editor_1_1tex__parser_a14298f87033d99150129b74f82d484de}{M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N\+\_\+\+L\+O\+N\+E}
+\item 
+dictionary \hyperlink{namespacetex__editor_1_1tex__parser_a740e1c1c007458cc3eadbdb1b09a09f8}{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+L\+O\+N\+E}
+\item 
+dictionary \hyperlink{namespacetex__editor_1_1tex__parser_aef4f62751db8b39566d55b4bf5fcc645}{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+N\+O\+R\+M\+A\+L}
+\item 
+dictionary \hyperlink{namespacetex__editor_1_1tex__parser_ab7ad6067629950c1f03f0609a767a1bd}{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+E\+N\+V}
+\item 
+dictionary \hyperlink{namespacetex__editor_1_1tex__parser_a13bf27f0d2ae8b7ba43c1704aed98887}{\+\_\+\+R\+E\+P\+L\+A\+C\+E}
+\item 
+list \hyperlink{namespacetex__editor_1_1tex__parser_a9ca879b111fa4dbe32b476e800622f81}{test\+\_\+suite\+\_\+1}
+\item 
+list \hyperlink{namespacetex__editor_1_1tex__parser_a5a98061bf500c69335751b0fc2cfc818}{test\+\_\+suite\+\_\+2}
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+\begin{DoxyVerb}@file src/tex_editor/tex_parser.py
+@version 1.0
+@author CN
+@author Gudule
+@date jan 2017
+
+Parser for a small subset of the Tex / LateX language.
+
+
+The parsing recognizes some TeX commands and returns a list of tuples
+(text, tags applied to the text).\end{DoxyVerb}
+ 
+
+\subsection{Documentation des fonctions}
+\hypertarget{namespacetex__editor_1_1tex__parser_a3c9dc90a3f669ba9901cad0e1eb9fb14}{}\index{tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}!post\+\_\+refactor@{post\+\_\+refactor}}
+\index{post\+\_\+refactor@{post\+\_\+refactor}!tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}}
+\subsubsection[{post\+\_\+refactor}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+tex\+\_\+parser.\+post\+\_\+refactor (
+\begin{DoxyParamCaption}
+\item[{}]{outpt}
+\end{DoxyParamCaption}
+)}\label{namespacetex__editor_1_1tex__parser_a3c9dc90a3f669ba9901cad0e1eb9fb14}
+
+
+Définition à la ligne 86 du fichier tex\+\_\+parser.\+py.
+
+\hypertarget{namespacetex__editor_1_1tex__parser_a58a42ed389b44183c51b29678927dcf4}{}\index{tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}!pre\+\_\+refactor@{pre\+\_\+refactor}}
+\index{pre\+\_\+refactor@{pre\+\_\+refactor}!tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}}
+\subsubsection[{pre\+\_\+refactor}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+tex\+\_\+parser.\+pre\+\_\+refactor (
+\begin{DoxyParamCaption}
+\item[{}]{inpt}
+\end{DoxyParamCaption}
+)}\label{namespacetex__editor_1_1tex__parser_a58a42ed389b44183c51b29678927dcf4}
+
+
+Définition à la ligne 80 du fichier tex\+\_\+parser.\+py.
+
+\hypertarget{namespacetex__editor_1_1tex__parser_ad93c436c717eb1690305e71ffda5a814}{}\index{tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}!tags\+\_\+to\+\_\+tex@{tags\+\_\+to\+\_\+tex}}
+\index{tags\+\_\+to\+\_\+tex@{tags\+\_\+to\+\_\+tex}!tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}}
+\subsubsection[{tags\+\_\+to\+\_\+tex}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+tex\+\_\+parser.\+tags\+\_\+to\+\_\+tex (
+\begin{DoxyParamCaption}
+\item[{}]{formatted}
+\end{DoxyParamCaption}
+)}\label{namespacetex__editor_1_1tex__parser_ad93c436c717eb1690305e71ffda5a814}
+\begin{DoxyVerb}Takes in input a list of triples from the description of a Tex-compliant
+text zone (from tkinter).
+Translates it in TeX.
+The third part of the triple is not interesting, it represents a position
+in the text zone.
+
+>>> print(tags_to_tex([('tagon', 'BOLD', '1.0'), ('text', 'toto', '1.0'), ('tagoff', 'BOLD', '1.4'), ('text', 'bloup', '1.4')]))
+\\textbf{toto}bloup
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 268 du fichier tex\+\_\+parser.\+py.
+
+\hypertarget{namespacetex__editor_1_1tex__parser_aa45bb45171acbdcb0fc4f11f233324de}{}\index{tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}!tex\+\_\+parse@{tex\+\_\+parse}}
+\index{tex\+\_\+parse@{tex\+\_\+parse}!tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}}
+\subsubsection[{tex\+\_\+parse}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+tex\+\_\+parser.\+tex\+\_\+parse (
+\begin{DoxyParamCaption}
+\item[{}]{inpt}
+\end{DoxyParamCaption}
+)}\label{namespacetex__editor_1_1tex__parser_aa45bb45171acbdcb0fc4f11f233324de}
+\begin{DoxyVerb}Parses the input.
+Warning :  to write tests, need to double the backslash symbol (that has to be doubled already)
+
+>>> print(tex_parse("\\\\begin{center} Toto\\\\textbf{plage}Bloup \\\\end{center}"))
+[(' Toto', ['CENTER']), ('plage', ['BOLD', 'CENTER']), ('Bloup ', ['CENTER'])]
+>>> print(tex_parse("\\\\textbf{argument} Tandis que cependant \\\\textbf{} suite"))
+[('argument', ['BOLD']), (' Tandis que cependant ', []), (' suite', [])]
+>>> print(tex_parse("\\\\textbf{./;,?!§─}_"))
+[('./;,?!§─', ['BOLD']), ('_', [])]
+>>> print(tex_parse("\\\\textbf{./;,?!§─}"))
+[('./;,?!§─', ['BOLD'])]
+>>> print(tex_parse("\\\\textbf{blou()\\"blou}blo\\""))
+[('blou()"blou', ['BOLD']), ('blo"', [])]
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 209 du fichier tex\+\_\+parser.\+py.
+
+\hypertarget{namespacetex__editor_1_1tex__parser_a4e9cfd4519c62659ac9a45aef9f7c9f2}{}\index{tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}!tex\+\_\+to\+\_\+tags@{tex\+\_\+to\+\_\+tags}}
+\index{tex\+\_\+to\+\_\+tags@{tex\+\_\+to\+\_\+tags}!tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}}
+\subsubsection[{tex\+\_\+to\+\_\+tags}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+tex\+\_\+parser.\+tex\+\_\+to\+\_\+tags (
+\begin{DoxyParamCaption}
+\item[{}]{inpt}
+\end{DoxyParamCaption}
+)}\label{namespacetex__editor_1_1tex__parser_a4e9cfd4519c62659ac9a45aef9f7c9f2}
+\begin{DoxyVerb}Used only for debugging / testing purposes, since the interface
+between parsed tex and tags is normally made by the tkinter
+text zone itself...
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 228 du fichier tex\+\_\+parser.\+py.
+
+
+
+\subsection{Documentation des variables}
+\hypertarget{namespacetex__editor_1_1tex__parser_a13bf27f0d2ae8b7ba43c1704aed98887}{}\index{tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}!\+\_\+\+R\+E\+P\+L\+A\+C\+E@{\+\_\+\+R\+E\+P\+L\+A\+C\+E}}
+\index{\+\_\+\+R\+E\+P\+L\+A\+C\+E@{\+\_\+\+R\+E\+P\+L\+A\+C\+E}!tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}}
+\subsubsection[{\+\_\+\+R\+E\+P\+L\+A\+C\+E}]{\setlength{\rightskip}{0pt plus 5cm}dictionary tex\+\_\+editor.\+tex\+\_\+parser.\+\_\+\+R\+E\+P\+L\+A\+C\+E}\label{namespacetex__editor_1_1tex__parser_a13bf27f0d2ae8b7ba43c1704aed98887}
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}
+1 = \{
+2 \textcolor{stringliteral}{"^"} : \textcolor{stringliteral}{" "},
+3 \textcolor{stringliteral}{"\(\backslash\)u00A0"} : \textcolor{stringliteral}{" "}, \textcolor{comment}{# le dernier : espace insécable de LibreOffice}
+4 \textcolor{stringliteral}{"’"} : \textcolor{stringliteral}{"'"}
+5 \}
+\end{DoxyCode}
+
+
+Définition à la ligne 73 du fichier tex\+\_\+parser.\+py.
+
+\hypertarget{namespacetex__editor_1_1tex__parser_a0b8e21ec116f7e53f3d4858c996694e8}{}\index{tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}!M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N@{M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N}}
+\index{M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N@{M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N}!tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}}
+\subsubsection[{M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N}]{\setlength{\rightskip}{0pt plus 5cm}dictionary tex\+\_\+editor.\+tex\+\_\+parser.\+M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N}\label{namespacetex__editor_1_1tex__parser_a0b8e21ec116f7e53f3d4858c996694e8}
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}
+1 = \{
+2 \textcolor{stringliteral}{"textbf"} : \textcolor{stringliteral}{"BOLD"},
+3 \textcolor{stringliteral}{"textit"} : \textcolor{stringliteral}{"ITAL"},
+4 \textcolor{stringliteral}{"textsc"} : \textcolor{stringliteral}{"SMALLCAPS"},
+5 \textcolor{stringliteral}{"chapter"} : \textcolor{stringliteral}{"CHAPTER"},
+6 \textcolor{stringliteral}{"section"} : \textcolor{stringliteral}{"SECTION"},
+7 \textcolor{stringliteral}{"flushleft"} : \textcolor{stringliteral}{"FLUSHLEFT"},
+8 \textcolor{stringliteral}{"flushright"} : \textcolor{stringliteral}{"FLUSHRIGHT"},
+9 \textcolor{stringliteral}{"center"} : \textcolor{stringliteral}{"CENTER"},
+10 \textcolor{stringliteral}{"footnote"} : \textcolor{stringliteral}{"FOOTNOTE"},
+11 \textcolor{stringliteral}{"underline"} : \textcolor{stringliteral}{"UNDERLINE"}
+12 \}
+\end{DoxyCode}
+
+
+Définition à la ligne 18 du fichier tex\+\_\+parser.\+py.
+
+\hypertarget{namespacetex__editor_1_1tex__parser_a14298f87033d99150129b74f82d484de}{}\index{tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}!M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N\+\_\+\+L\+O\+N\+E@{M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N\+\_\+\+L\+O\+N\+E}}
+\index{M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N\+\_\+\+L\+O\+N\+E@{M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N\+\_\+\+L\+O\+N\+E}!tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}}
+\subsubsection[{M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N\+\_\+\+L\+O\+N\+E}]{\setlength{\rightskip}{0pt plus 5cm}dictionary tex\+\_\+editor.\+tex\+\_\+parser.\+M\+A\+P\+P\+I\+N\+G\+\_\+\+I\+N\+\_\+\+L\+O\+N\+E}\label{namespacetex__editor_1_1tex__parser_a14298f87033d99150129b74f82d484de}
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}
+1 = \{
+2 \textcolor{stringliteral}{"oe"} : \textcolor{stringliteral}{"œ"},
+3 \textcolor{stringliteral}{"OE"} : \textcolor{stringliteral}{"Œ"},
+4 \textcolor{stringliteral}{"og"} : \textcolor{stringliteral}{"«"},
+5 \textcolor{stringliteral}{"fg"} : \textcolor{stringliteral}{"»"},
+6 \textcolor{stringliteral}{"dots"} : \textcolor{stringliteral}{"…"},
+7 \textcolor{stringliteral}{"'e"} : \textcolor{stringliteral}{"é"}
+8 \textcolor{comment}{# ("’", "'"),}
+9 \textcolor{comment}{# ("«", "\(\backslash\)""),}
+10 \textcolor{comment}{# ("»", "\(\backslash\)""),}
+11 \textcolor{comment}{# ("…", "..."),}
+12 \textcolor{comment}{# ("[", "("),}
+13 \textcolor{comment}{# ("]", ")"),}
+14 \textcolor{comment}{# ("œ", "oe")}
+15 \textcolor{comment}{# "oe" : "œ"}
+16 \}
+\end{DoxyCode}
+
+
+Définition à la ligne 31 du fichier tex\+\_\+parser.\+py.
+
+\hypertarget{namespacetex__editor_1_1tex__parser_ab7ad6067629950c1f03f0609a767a1bd}{}\index{tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}!M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+E\+N\+V@{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+E\+N\+V}}
+\index{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+E\+N\+V@{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+E\+N\+V}!tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}}
+\subsubsection[{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+E\+N\+V}]{\setlength{\rightskip}{0pt plus 5cm}dictionary tex\+\_\+editor.\+tex\+\_\+parser.\+M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+E\+N\+V}\label{namespacetex__editor_1_1tex__parser_ab7ad6067629950c1f03f0609a767a1bd}
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}
+1 = \{
+2 \textcolor{stringliteral}{"FLUSHLEFT"} : [\textcolor{stringliteral}{"flushleft"}],
+3 \textcolor{stringliteral}{"FLUSHRIGHT"} : [\textcolor{stringliteral}{"flushright"}],
+4 \textcolor{stringliteral}{"CENTER"} : [\textcolor{stringliteral}{"center"}]
+5 \}
+\end{DoxyCode}
+
+
+Définition à la ligne 67 du fichier tex\+\_\+parser.\+py.
+
+\hypertarget{namespacetex__editor_1_1tex__parser_a740e1c1c007458cc3eadbdb1b09a09f8}{}\index{tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}!M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+L\+O\+N\+E@{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+L\+O\+N\+E}}
+\index{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+L\+O\+N\+E@{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+L\+O\+N\+E}!tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}}
+\subsubsection[{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+L\+O\+N\+E}]{\setlength{\rightskip}{0pt plus 5cm}dictionary tex\+\_\+editor.\+tex\+\_\+parser.\+M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+L\+O\+N\+E}\label{namespacetex__editor_1_1tex__parser_a740e1c1c007458cc3eadbdb1b09a09f8}
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}
+1 = \{
+2 \textcolor{comment}{# "é" : "'e",}
+3 \textcolor{stringliteral}{"œ"} : \textcolor{stringliteral}{"oe"},
+4 \textcolor{stringliteral}{"Œ"} : \textcolor{stringliteral}{"OE"},
+5 \textcolor{stringliteral}{"«"} : \textcolor{stringliteral}{"og"},
+6 \textcolor{stringliteral}{"»"} : \textcolor{stringliteral}{"fg"},
+7 \textcolor{stringliteral}{"…"} : \textcolor{stringliteral}{"dots"}
+8 \}
+\end{DoxyCode}
+
+
+Définition à la ligne 48 du fichier tex\+\_\+parser.\+py.
+
+\hypertarget{namespacetex__editor_1_1tex__parser_aef4f62751db8b39566d55b4bf5fcc645}{}\index{tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}!M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+N\+O\+R\+M\+A\+L@{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+N\+O\+R\+M\+A\+L}}
+\index{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+N\+O\+R\+M\+A\+L@{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+N\+O\+R\+M\+A\+L}!tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}}
+\subsubsection[{M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+N\+O\+R\+M\+A\+L}]{\setlength{\rightskip}{0pt plus 5cm}dictionary tex\+\_\+editor.\+tex\+\_\+parser.\+M\+A\+P\+P\+I\+N\+G\+\_\+\+O\+U\+T\+\_\+\+N\+O\+R\+M\+A\+L}\label{namespacetex__editor_1_1tex__parser_aef4f62751db8b39566d55b4bf5fcc645}
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}
+1 = \{
+2 \textcolor{stringliteral}{"BOLD"} : [\textcolor{stringliteral}{"textbf"}],
+3 \textcolor{stringliteral}{"ITAL"} : [\textcolor{stringliteral}{"textit"}],
+4 \textcolor{stringliteral}{"CHAPTER"} : [\textcolor{stringliteral}{"chapter"}],
+5 \textcolor{stringliteral}{"SECTION"} : [\textcolor{stringliteral}{"section"}],
+6 \textcolor{stringliteral}{"FOOTNOTE"} : [\textcolor{stringliteral}{"footnote"}],
+7 \textcolor{stringliteral}{"UNDERLINE"} : [\textcolor{stringliteral}{"underline"}],
+8 \textcolor{stringliteral}{"SMALLCAPS"} : [\textcolor{stringliteral}{"textsc"}]
+9 \}
+\end{DoxyCode}
+
+
+Définition à la ligne 57 du fichier tex\+\_\+parser.\+py.
+
+\hypertarget{namespacetex__editor_1_1tex__parser_a9ca879b111fa4dbe32b476e800622f81}{}\index{tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}!test\+\_\+suite\+\_\+1@{test\+\_\+suite\+\_\+1}}
+\index{test\+\_\+suite\+\_\+1@{test\+\_\+suite\+\_\+1}!tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}}
+\subsubsection[{test\+\_\+suite\+\_\+1}]{\setlength{\rightskip}{0pt plus 5cm}list tex\+\_\+editor.\+tex\+\_\+parser.\+test\+\_\+suite\+\_\+1}\label{namespacetex__editor_1_1tex__parser_a9ca879b111fa4dbe32b476e800622f81}
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}
+1 = [
+2         \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)textbf\{toto\} re \(\backslash\)\(\backslash\)oe blo\(\backslash\)\(\backslash\)oe up. \(\backslash\)\(\backslash\)fg\{\}"},
+3         \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)begin\{center\}\(\backslash\)\(\backslash\)textbf\{Toto\}\(\backslash\)\(\backslash\)end\{center\}"},
+4         \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)og\{\} Toto floufi \(\backslash\)\(\backslash\)fg\{\}."}
+5         \textcolor{comment}{# "Ceci est un test h\(\backslash\)\(\backslash\)'e h\(\backslash\)\(\backslash\)'e h\(\backslash\)\(\backslash\)'e\{\}grandeur nature."}
+6     ]
+\end{DoxyCode}
+
+
+Définition à la ligne 350 du fichier tex\+\_\+parser.\+py.
+
+\hypertarget{namespacetex__editor_1_1tex__parser_a5a98061bf500c69335751b0fc2cfc818}{}\index{tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}!test\+\_\+suite\+\_\+2@{test\+\_\+suite\+\_\+2}}
+\index{test\+\_\+suite\+\_\+2@{test\+\_\+suite\+\_\+2}!tex\+\_\+editor\+::tex\+\_\+parser@{tex\+\_\+editor\+::tex\+\_\+parser}}
+\subsubsection[{test\+\_\+suite\+\_\+2}]{\setlength{\rightskip}{0pt plus 5cm}list tex\+\_\+editor.\+tex\+\_\+parser.\+test\+\_\+suite\+\_\+2}\label{namespacetex__editor_1_1tex__parser_a5a98061bf500c69335751b0fc2cfc818}
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}
+1 = [
+2         [(\textcolor{stringliteral}{'text'}, \textcolor{stringliteral}{"Héhéhé bouh Moche."}, \textcolor{stringliteral}{''})],
+3         [(\textcolor{stringliteral}{'text'}, \textcolor{stringliteral}{"Et de sa voix puissante, il tempêta : « encore » floufi !"}, \textcolor{stringliteral}{''})]
+4     ]
+\end{DoxyCode}
+
+
+Définition à la ligne 363 du fichier tex\+\_\+parser.\+py.
+

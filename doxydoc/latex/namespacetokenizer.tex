@@ -1,0 +1,101 @@
+\hypertarget{namespacetokenizer}{}\section{Référence de l\textquotesingle{}espace de nommage tokenizer}
+\label{namespacetokenizer}\index{tokenizer@{tokenizer}}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacetokenizer_a30cb15b0950de4e8a9b00b1a42852ddb}{yield\+\_\+current\+\_\+word} (pos, current)
+\item 
+def \hyperlink{namespacetokenizer_a96fa776f6a9120b05064accccb320156}{tokenize} (text)
+\item 
+def \hyperlink{namespacetokenizer_af24eead26991dd3491ff67e6c68dab0f}{get\+\_\+words} (text)
+\item 
+def \hyperlink{namespacetokenizer_a336237c2ca352ce8d955661a22099326}{get\+\_\+non\+\_\+maj\+\_\+lines} (text)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{namespacetokenizer_a5c2d26110082282c1eb766a0a71dfc9d}{\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L} = \char`\"{}-\/\%\char`\"{}
+\item 
+list \hyperlink{namespacetokenizer_aa94519b0cea3d01e281f543a1d2a4d2f}{\+\_\+\+E\+X\+C\+E\+P\+T\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+P\+A\+R\+T} = \mbox{[}\char`\"{}il\char`\"{}, \char`\"{}elle\char`\"{}, \char`\"{}ils\char`\"{}, \char`\"{}je\char`\"{}, \char`\"{}tu\char`\"{}, \char`\"{}toi\char`\"{}, \char`\"{}moi\char`\"{}, \char`\"{}nous\char`\"{}, \char`\"{}vous\char`\"{}, \char`\"{}le\char`\"{}, \char`\"{}la\char`\"{}, \char`\"{}les\char`\"{}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+\begin{DoxyVerb}@file src/parsers/tokenizer.py
+@version 1.0
+@author CN
+@author Gudule
+@date jan 2017\end{DoxyVerb}
+ 
+
+\subsection{Documentation des fonctions}
+\hypertarget{namespacetokenizer_a336237c2ca352ce8d955661a22099326}{}\index{tokenizer@{tokenizer}!get\+\_\+non\+\_\+maj\+\_\+lines@{get\+\_\+non\+\_\+maj\+\_\+lines}}
+\index{get\+\_\+non\+\_\+maj\+\_\+lines@{get\+\_\+non\+\_\+maj\+\_\+lines}!tokenizer@{tokenizer}}
+\subsubsection[{get\+\_\+non\+\_\+maj\+\_\+lines}]{\setlength{\rightskip}{0pt plus 5cm}def tokenizer.\+get\+\_\+non\+\_\+maj\+\_\+lines (
+\begin{DoxyParamCaption}
+\item[{}]{text}
+\end{DoxyParamCaption}
+)}\label{namespacetokenizer_a336237c2ca352ce8d955661a22099326}
+
+
+Définition à la ligne 139 du fichier tokenizer.\+py.
+
+\hypertarget{namespacetokenizer_af24eead26991dd3491ff67e6c68dab0f}{}\index{tokenizer@{tokenizer}!get\+\_\+words@{get\+\_\+words}}
+\index{get\+\_\+words@{get\+\_\+words}!tokenizer@{tokenizer}}
+\subsubsection[{get\+\_\+words}]{\setlength{\rightskip}{0pt plus 5cm}def tokenizer.\+get\+\_\+words (
+\begin{DoxyParamCaption}
+\item[{}]{text}
+\end{DoxyParamCaption}
+)}\label{namespacetokenizer_af24eead26991dd3491ff67e6c68dab0f}
+\begin{DoxyVerb}Attention : supprime toutes les apostrophes, par voie de conséquence.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 126 du fichier tokenizer.\+py.
+
+\hypertarget{namespacetokenizer_a96fa776f6a9120b05064accccb320156}{}\index{tokenizer@{tokenizer}!tokenize@{tokenize}}
+\index{tokenize@{tokenize}!tokenizer@{tokenizer}}
+\subsubsection[{tokenize}]{\setlength{\rightskip}{0pt plus 5cm}def tokenizer.\+tokenize (
+\begin{DoxyParamCaption}
+\item[{}]{text}
+\end{DoxyParamCaption}
+)}\label{namespacetokenizer_a96fa776f6a9120b05064accccb320156}
+\begin{DoxyVerb}Découpe un texte français en tokens : mots ou ponctuations.
+Les ponctuations conservent les espaces.
+
+>>> list(tokenize("Gudule demanda-t-il.")) == [{'pos': (0, 6), 'type': 'W', 'token': 'Gudule'}, {'pos': (6, 7), 'type': 'P', 'token': ' '}, {'pos': (7, 14), 'type': 'W', 'token': 'demanda'}, {'pos': (14, 15), 'type': 'P', 'token': '-'}, {'pos': (14, 15), 'type': 'W', 'token': 't'}, {'pos': (14, 15), 'type': 'P', 'token': '-'}, {'pos': (15, 19), 'type': 'W', 'token': 'il'}, {'pos': (19, 19), 'type': 'P', 'token': '.'}]
+True
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 75 du fichier tokenizer.\+py.
+
+\hypertarget{namespacetokenizer_a30cb15b0950de4e8a9b00b1a42852ddb}{}\index{tokenizer@{tokenizer}!yield\+\_\+current\+\_\+word@{yield\+\_\+current\+\_\+word}}
+\index{yield\+\_\+current\+\_\+word@{yield\+\_\+current\+\_\+word}!tokenizer@{tokenizer}}
+\subsubsection[{yield\+\_\+current\+\_\+word}]{\setlength{\rightskip}{0pt plus 5cm}def tokenizer.\+yield\+\_\+current\+\_\+word (
+\begin{DoxyParamCaption}
+\item[{}]{pos, }
+\item[{}]{current}
+\end{DoxyParamCaption}
+)}\label{namespacetokenizer_a30cb15b0950de4e8a9b00b1a42852ddb}
+
+
+Définition à la ligne 15 du fichier tokenizer.\+py.
+
+
+
+\subsection{Documentation des variables}
+\hypertarget{namespacetokenizer_aa94519b0cea3d01e281f543a1d2a4d2f}{}\index{tokenizer@{tokenizer}!\+\_\+\+E\+X\+C\+E\+P\+T\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+P\+A\+R\+T@{\+\_\+\+E\+X\+C\+E\+P\+T\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+P\+A\+R\+T}}
+\index{\+\_\+\+E\+X\+C\+E\+P\+T\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+P\+A\+R\+T@{\+\_\+\+E\+X\+C\+E\+P\+T\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+P\+A\+R\+T}!tokenizer@{tokenizer}}
+\subsubsection[{\+\_\+\+E\+X\+C\+E\+P\+T\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+P\+A\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}list tokenizer.\+\_\+\+E\+X\+C\+E\+P\+T\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+P\+A\+R\+T = \mbox{[}\char`\"{}il\char`\"{}, \char`\"{}elle\char`\"{}, \char`\"{}ils\char`\"{}, \char`\"{}je\char`\"{}, \char`\"{}tu\char`\"{}, \char`\"{}toi\char`\"{}, \char`\"{}moi\char`\"{}, \char`\"{}nous\char`\"{}, \char`\"{}vous\char`\"{}, \char`\"{}le\char`\"{}, \char`\"{}la\char`\"{}, \char`\"{}les\char`\"{}\mbox{]}}\label{namespacetokenizer_aa94519b0cea3d01e281f543a1d2a4d2f}
+
+
+Définition à la ligne 13 du fichier tokenizer.\+py.
+
+\hypertarget{namespacetokenizer_a5c2d26110082282c1eb766a0a71dfc9d}{}\index{tokenizer@{tokenizer}!\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L@{\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L}}
+\index{\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L@{\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L}!tokenizer@{tokenizer}}
+\subsubsection[{\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L}]{\setlength{\rightskip}{0pt plus 5cm}string tokenizer.\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L = \char`\"{}-\/\%\char`\"{}}\label{namespacetokenizer_a5c2d26110082282c1eb766a0a71dfc9d}
+
+
+Définition à la ligne 11 du fichier tokenizer.\+py.
+

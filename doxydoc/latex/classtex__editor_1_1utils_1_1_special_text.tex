@@ -1,0 +1,397 @@
+\hypertarget{classtex__editor_1_1utils_1_1_special_text}{}\section{Référence de la classe tex\+\_\+editor.\+utils.\+Special\+Text}
+\label{classtex__editor_1_1utils_1_1_special_text}\index{tex\+\_\+editor.\+utils.\+Special\+Text@{tex\+\_\+editor.\+utils.\+Special\+Text}}
+Graphe d\textquotesingle{}héritage de tex\+\_\+editor.\+utils.\+Special\+Text\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classtex__editor_1_1utils_1_1_special_text}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_ab5ce5add457b9d87567d9e406e0e0d7f}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, master=None, args, kwargs)
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_ac86588cdecd42ba520da540c3b53054c}{show\+\_\+tooltip\+\_\+at\+\_\+clicked\+\_\+position} (self, event, \hyperlink{namespacetex__editor_1_1utils_ae4fa308d3c65a5223578baf4c1ec4ddd}{text})
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_aa2c7f505584004c3a51503b561f88d93}{register\+\_\+structure\+\_\+tag} (self, tag)
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_ac2a86818f880670a440941efe6aac1c3}{register\+\_\+error\+\_\+tag} (self, tag)
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_aff461b778803c2006cc119f2b3423e7e}{register\+\_\+additional\+\_\+tag} (self, tag)
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_ad05500b9af029430216d4d8e3ef8dd0c}{remove\+\_\+error\+\_\+tags} (self, begin, end)
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_a0f84ca56d6989cc55461d13436dac299}{remove\+\_\+additional\+\_\+tags} (self, begin, end)
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_a3a9a95544f83c8263b1282d4bdb4d24b}{on\+\_\+change}
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_a8b33099c6026bdd806c3f899b104a670}{tag\+\_\+add} (self, args, kwargs)
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_a8989286a4a84c502f21438d58cb3bf84}{tag\+\_\+remove} (self, args, kwargs)
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_a8fe83b25bc52aa9240d159aed2081043}{on\+\_\+scroll} (self, args, kwargs)
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_adbc4b27e8f31501bee76441b209612e0}{on\+\_\+select\+\_\+all}
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_adda1583e7a0fea7dd4f1c5a13ad1cbf3}{\+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_a6eeb46052643bc78189fde776c810816}{on\+\_\+key}
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_a7b1081969baa7ac4a02f5ee923ef7186}{insert\+\_\+text}
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_afc888f5c0bf9de7be4f144718b3fe8fd}{on\+\_\+copy}
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_a1403cd4dac3022124fa5fbe2c661eacd}{on\+\_\+cut}
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_ad6631a1cf04694d144470bbe3e109e98}{on\+\_\+paste}
+\item 
+def \hyperlink{classtex__editor_1_1utils_1_1_special_text_a6b1b1d52a74cf99fc4d49c1737fec8e0}{on\+\_\+find}
+\end{DoxyCompactItemize}
+\subsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtex__editor_1_1utils_1_1_special_text_a92e99a123af2b93e7b7bb69585240f13}{frame}
+\item 
+\hyperlink{classtex__editor_1_1utils_1_1_special_text_aa01037a9c0d49d806abbc9822c60cc35}{vbar}
+\item 
+\hyperlink{classtex__editor_1_1utils_1_1_special_text_ab0eb81132ed588c16c3561a8b726619f}{linenumbers}
+\item 
+\hyperlink{classtex__editor_1_1utils_1_1_special_text_aa8d9c577e09d0f6ad96671552ce38a64}{structurescroller}
+\item 
+\hyperlink{classtex__editor_1_1utils_1_1_special_text_a7cbbcc511806669887afff4e53bc7d1a}{errorscroller}
+\item 
+\hyperlink{classtex__editor_1_1utils_1_1_special_text_a6a3b266f1363705b2b96e2430a60621d}{additional\+\_\+tags}
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+\begin{DoxyVerb}@class SpecialText
+A subclass of Text, scrollable, with line numbers, that adds commands :
+- copy
+- cut
+- paste
+- find
+- select all
+
+It fires automatically <<Change>> event when the text is modified in a way
+such that line numbers should be updated, and catches it.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 193 du fichier utils.\+py.
+
+
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_ab5ce5add457b9d87567d9e406e0e0d7f}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{\+\_\+\+\_\+init\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{master = {\ttfamily None}, }
+\item[{}]{args, }
+\item[{}]{kwargs}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_ab5ce5add457b9d87567d9e406e0e0d7f}
+
+
+Définition à la ligne 207 du fichier utils.\+py.
+
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_adda1583e7a0fea7dd4f1c5a13ad1cbf3}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!\+\_\+\+\_\+str\+\_\+\+\_\+@{\+\_\+\+\_\+str\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+str\+\_\+\+\_\+@{\+\_\+\+\_\+str\+\_\+\+\_\+}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{\+\_\+\+\_\+str\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+\_\+\+\_\+str\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_adda1583e7a0fea7dd4f1c5a13ad1cbf3}
+
+
+Définition à la ligne 316 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_a7b1081969baa7ac4a02f5ee923ef7186}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!insert\+\_\+text@{insert\+\_\+text}}
+\index{insert\+\_\+text@{insert\+\_\+text}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{insert\+\_\+text}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+insert\+\_\+text (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{t, }
+\item[{}]{event = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_a7b1081969baa7ac4a02f5ee923ef7186}
+\begin{DoxyVerb}Insert text at the position INSERT and fire a <<Change>> event.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 327 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_a3a9a95544f83c8263b1282d4bdb4d24b}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!on\+\_\+change@{on\+\_\+change}}
+\index{on\+\_\+change@{on\+\_\+change}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{on\+\_\+change}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+on\+\_\+change (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{event = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_a3a9a95544f83c8263b1282d4bdb4d24b}
+
+
+Définition à la ligne 284 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_afc888f5c0bf9de7be4f144718b3fe8fd}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!on\+\_\+copy@{on\+\_\+copy}}
+\index{on\+\_\+copy@{on\+\_\+copy}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{on\+\_\+copy}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+on\+\_\+copy (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{event = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_afc888f5c0bf9de7be4f144718b3fe8fd}
+\begin{DoxyVerb}Copy the selection in the clipboard.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 340 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_a1403cd4dac3022124fa5fbe2c661eacd}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!on\+\_\+cut@{on\+\_\+cut}}
+\index{on\+\_\+cut@{on\+\_\+cut}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{on\+\_\+cut}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+on\+\_\+cut (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{event = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_a1403cd4dac3022124fa5fbe2c661eacd}
+\begin{DoxyVerb}Cut the selection in the clipboard.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 352 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_a6b1b1d52a74cf99fc4d49c1737fec8e0}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!on\+\_\+find@{on\+\_\+find}}
+\index{on\+\_\+find@{on\+\_\+find}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{on\+\_\+find}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+on\+\_\+find (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{event = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_a6b1b1d52a74cf99fc4d49c1737fec8e0}
+\begin{DoxyVerb}The method has two behaviors :
+- if some text is selected, search and find in this part only
+- if no text is selected, search in the whole text
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 378 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_a6eeb46052643bc78189fde776c810816}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!on\+\_\+key@{on\+\_\+key}}
+\index{on\+\_\+key@{on\+\_\+key}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{on\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+on\+\_\+key (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{event = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_a6eeb46052643bc78189fde776c810816}
+\begin{DoxyVerb}Generate a <<Change>> event when any key is pressed, to redraw line
+numbers and scroll panel.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 319 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_ad6631a1cf04694d144470bbe3e109e98}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!on\+\_\+paste@{on\+\_\+paste}}
+\index{on\+\_\+paste@{on\+\_\+paste}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{on\+\_\+paste}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+on\+\_\+paste (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{event = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_ad6631a1cf04694d144470bbe3e109e98}
+\begin{DoxyVerb}Paste the clipboard's contents.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 365 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_a8fe83b25bc52aa9240d159aed2081043}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!on\+\_\+scroll@{on\+\_\+scroll}}
+\index{on\+\_\+scroll@{on\+\_\+scroll}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{on\+\_\+scroll}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+on\+\_\+scroll (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{args, }
+\item[{}]{kwargs}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_a8fe83b25bc52aa9240d159aed2081043}
+\begin{DoxyVerb}Generate a <<Change>> event when the text zone is scrolled. This helps
+redrawing the line numbers.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 297 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_adbc4b27e8f31501bee76441b209612e0}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!on\+\_\+select\+\_\+all@{on\+\_\+select\+\_\+all}}
+\index{on\+\_\+select\+\_\+all@{on\+\_\+select\+\_\+all}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{on\+\_\+select\+\_\+all}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+on\+\_\+select\+\_\+all (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{event = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_adbc4b27e8f31501bee76441b209612e0}
+\begin{DoxyVerb}Select the whole content of the text zone.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 306 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_aff461b778803c2006cc119f2b3423e7e}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!register\+\_\+additional\+\_\+tag@{register\+\_\+additional\+\_\+tag}}
+\index{register\+\_\+additional\+\_\+tag@{register\+\_\+additional\+\_\+tag}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{register\+\_\+additional\+\_\+tag}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+register\+\_\+additional\+\_\+tag (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{tag}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_aff461b778803c2006cc119f2b3423e7e}
+
+
+Définition à la ligne 273 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_ac2a86818f880670a440941efe6aac1c3}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!register\+\_\+error\+\_\+tag@{register\+\_\+error\+\_\+tag}}
+\index{register\+\_\+error\+\_\+tag@{register\+\_\+error\+\_\+tag}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{register\+\_\+error\+\_\+tag}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+register\+\_\+error\+\_\+tag (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{tag}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_ac2a86818f880670a440941efe6aac1c3}
+
+
+Définition à la ligne 270 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_aa2c7f505584004c3a51503b561f88d93}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!register\+\_\+structure\+\_\+tag@{register\+\_\+structure\+\_\+tag}}
+\index{register\+\_\+structure\+\_\+tag@{register\+\_\+structure\+\_\+tag}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{register\+\_\+structure\+\_\+tag}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+register\+\_\+structure\+\_\+tag (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{tag}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_aa2c7f505584004c3a51503b561f88d93}
+
+
+Définition à la ligne 267 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_a0f84ca56d6989cc55461d13436dac299}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!remove\+\_\+additional\+\_\+tags@{remove\+\_\+additional\+\_\+tags}}
+\index{remove\+\_\+additional\+\_\+tags@{remove\+\_\+additional\+\_\+tags}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{remove\+\_\+additional\+\_\+tags}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+remove\+\_\+additional\+\_\+tags (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{begin, }
+\item[{}]{end}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_a0f84ca56d6989cc55461d13436dac299}
+
+
+Définition à la ligne 280 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_ad05500b9af029430216d4d8e3ef8dd0c}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!remove\+\_\+error\+\_\+tags@{remove\+\_\+error\+\_\+tags}}
+\index{remove\+\_\+error\+\_\+tags@{remove\+\_\+error\+\_\+tags}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{remove\+\_\+error\+\_\+tags}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+remove\+\_\+error\+\_\+tags (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{begin, }
+\item[{}]{end}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_ad05500b9af029430216d4d8e3ef8dd0c}
+
+
+Définition à la ligne 276 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_ac86588cdecd42ba520da540c3b53054c}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!show\+\_\+tooltip\+\_\+at\+\_\+clicked\+\_\+position@{show\+\_\+tooltip\+\_\+at\+\_\+clicked\+\_\+position}}
+\index{show\+\_\+tooltip\+\_\+at\+\_\+clicked\+\_\+position@{show\+\_\+tooltip\+\_\+at\+\_\+clicked\+\_\+position}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{show\+\_\+tooltip\+\_\+at\+\_\+clicked\+\_\+position}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+show\+\_\+tooltip\+\_\+at\+\_\+clicked\+\_\+position (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{event, }
+\item[{}]{text}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_ac86588cdecd42ba520da540c3b53054c}
+\begin{DoxyVerb}Show a tooltip with the text given in argument, at the position
+that was clicked in the text zone.
+\end{DoxyVerb}
+ 
+
+Définition à la ligne 260 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_a8b33099c6026bdd806c3f899b104a670}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!tag\+\_\+add@{tag\+\_\+add}}
+\index{tag\+\_\+add@{tag\+\_\+add}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{tag\+\_\+add}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+tag\+\_\+add (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{args, }
+\item[{}]{kwargs}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_a8b33099c6026bdd806c3f899b104a670}
+
+
+Définition à la ligne 289 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_a8989286a4a84c502f21438d58cb3bf84}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!tag\+\_\+remove@{tag\+\_\+remove}}
+\index{tag\+\_\+remove@{tag\+\_\+remove}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{tag\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}def tex\+\_\+editor.\+utils.\+Special\+Text.\+tag\+\_\+remove (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{args, }
+\item[{}]{kwargs}
+\end{DoxyParamCaption}
+)}\label{classtex__editor_1_1utils_1_1_special_text_a8989286a4a84c502f21438d58cb3bf84}
+
+
+Définition à la ligne 293 du fichier utils.\+py.
+
+
+
+\subsection{Documentation des données membres}
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_a6a3b266f1363705b2b96e2430a60621d}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!additional\+\_\+tags@{additional\+\_\+tags}}
+\index{additional\+\_\+tags@{additional\+\_\+tags}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{additional\+\_\+tags}]{\setlength{\rightskip}{0pt plus 5cm}tex\+\_\+editor.\+utils.\+Special\+Text.\+additional\+\_\+tags}\label{classtex__editor_1_1utils_1_1_special_text_a6a3b266f1363705b2b96e2430a60621d}
+
+
+Définition à la ligne 258 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_a7cbbcc511806669887afff4e53bc7d1a}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!errorscroller@{errorscroller}}
+\index{errorscroller@{errorscroller}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{errorscroller}]{\setlength{\rightskip}{0pt plus 5cm}tex\+\_\+editor.\+utils.\+Special\+Text.\+errorscroller}\label{classtex__editor_1_1utils_1_1_special_text_a7cbbcc511806669887afff4e53bc7d1a}
+
+
+Définition à la ligne 227 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_a92e99a123af2b93e7b7bb69585240f13}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!frame@{frame}}
+\index{frame@{frame}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{frame}]{\setlength{\rightskip}{0pt plus 5cm}tex\+\_\+editor.\+utils.\+Special\+Text.\+frame}\label{classtex__editor_1_1utils_1_1_special_text_a92e99a123af2b93e7b7bb69585240f13}
+
+
+Définition à la ligne 208 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_ab0eb81132ed588c16c3561a8b726619f}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!linenumbers@{linenumbers}}
+\index{linenumbers@{linenumbers}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{linenumbers}]{\setlength{\rightskip}{0pt plus 5cm}tex\+\_\+editor.\+utils.\+Special\+Text.\+linenumbers}\label{classtex__editor_1_1utils_1_1_special_text_ab0eb81132ed588c16c3561a8b726619f}
+
+
+Définition à la ligne 219 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_aa8d9c577e09d0f6ad96671552ce38a64}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!structurescroller@{structurescroller}}
+\index{structurescroller@{structurescroller}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{structurescroller}]{\setlength{\rightskip}{0pt plus 5cm}tex\+\_\+editor.\+utils.\+Special\+Text.\+structurescroller}\label{classtex__editor_1_1utils_1_1_special_text_aa8d9c577e09d0f6ad96671552ce38a64}
+
+
+Définition à la ligne 223 du fichier utils.\+py.
+
+\hypertarget{classtex__editor_1_1utils_1_1_special_text_aa01037a9c0d49d806abbc9822c60cc35}{}\index{tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}!vbar@{vbar}}
+\index{vbar@{vbar}!tex\+\_\+editor\+::utils\+::\+Special\+Text@{tex\+\_\+editor\+::utils\+::\+Special\+Text}}
+\subsubsection[{vbar}]{\setlength{\rightskip}{0pt plus 5cm}tex\+\_\+editor.\+utils.\+Special\+Text.\+vbar}\label{classtex__editor_1_1utils_1_1_special_text_aa01037a9c0d49d806abbc9822c60cc35}
+
+
+Définition à la ligne 209 du fichier utils.\+py.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+src/tex\+\_\+editor/\hyperlink{utils_8py}{utils.\+py}\end{DoxyCompactItemize}
