@@ -90,10 +90,10 @@ ENV/
 
 doxydoc/
 anonymizator.py
-Doxyfile.dox
 tests/
 resources/
-src/versificateur.sh
+versificateur.sh
+versificateur.txt
 # src/data/dictionary.db
 # src/data/lexique.txt
 src/magicbutton/data/
